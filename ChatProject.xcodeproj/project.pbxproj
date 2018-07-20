@@ -11,10 +11,10 @@
 		D63D7D612101D02E004AE0FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63D7D602101D02E004AE0FA /* ViewController.m */; };
 		D63D7D642101D02E004AE0FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D63D7D622101D02E004AE0FA /* Main.storyboard */; };
 		D63D7D662101D032004AE0FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63D7D652101D032004AE0FA /* Assets.xcassets */; };
-		D63D7D692101D032004AE0FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D63D7D672101D032004AE0FA /* LaunchScreen.storyboard */; };
 		D63D7D6C2101D032004AE0FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D63D7D6B2101D032004AE0FA /* main.m */; };
 		D63D7D762101D032004AE0FA /* ChatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D63D7D752101D032004AE0FA /* ChatProjectTests.m */; };
 		D63D7D812101D032004AE0FA /* ChatProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D63D7D802101D032004AE0FA /* ChatProjectUITests.m */; };
+		D63D7D902101DB31004AE0FA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D63D7D8F2101DB31004AE0FA /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		D63D7D602101D02E004AE0FA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D63D7D632101D02E004AE0FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D63D7D652101D032004AE0FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D63D7D682101D032004AE0FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D63D7D6A2101D032004AE0FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D63D7D6B2101D032004AE0FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D63D7D712101D032004AE0FA /* ChatProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +50,7 @@
 		D63D7D7C2101D032004AE0FA /* ChatProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63D7D802101D032004AE0FA /* ChatProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatProjectUITests.m; sourceTree = "<group>"; };
 		D63D7D822101D032004AE0FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D63D7D8F2101DB31004AE0FA /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,15 +101,12 @@
 		D63D7D5B2101D02E004AE0FA /* ChatProject */ = {
 			isa = PBXGroup;
 			children = (
-				D63D7D5C2101D02E004AE0FA /* AppDelegate.h */,
-				D63D7D5D2101D02E004AE0FA /* AppDelegate.m */,
-				D63D7D5F2101D02E004AE0FA /* ViewController.h */,
-				D63D7D602101D02E004AE0FA /* ViewController.m */,
-				D63D7D622101D02E004AE0FA /* Main.storyboard */,
-				D63D7D652101D032004AE0FA /* Assets.xcassets */,
-				D63D7D672101D032004AE0FA /* LaunchScreen.storyboard */,
-				D63D7D6A2101D032004AE0FA /* Info.plist */,
-				D63D7D6B2101D032004AE0FA /* main.m */,
+				D63D7D982101E0B2004AE0FA /* other */,
+				D63D7D972101E08E004AE0FA /* MyInfo */,
+				D63D7D962101E04F004AE0FA /* Dynamic */,
+				D63D7D952101E042004AE0FA /* Chat */,
+				D63D7D942101E023004AE0FA /* Register */,
+				D63D7D932101E00D004AE0FA /* Login */,
 			);
 			path = ChatProject;
 			sourceTree = "<group>";
@@ -130,6 +127,57 @@
 				D63D7D822101D032004AE0FA /* Info.plist */,
 			);
 			path = ChatProjectUITests;
+			sourceTree = "<group>";
+		};
+		D63D7D932101E00D004AE0FA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D63D7D942101E023004AE0FA /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		D63D7D952101E042004AE0FA /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D63D7D962101E04F004AE0FA /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dynamic;
+			sourceTree = "<group>";
+		};
+		D63D7D972101E08E004AE0FA /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyInfo;
+			sourceTree = "<group>";
+		};
+		D63D7D982101E0B2004AE0FA /* other */ = {
+			isa = PBXGroup;
+			children = (
+				D63D7D5C2101D02E004AE0FA /* AppDelegate.h */,
+				D63D7D5D2101D02E004AE0FA /* AppDelegate.m */,
+				D63D7D5F2101D02E004AE0FA /* ViewController.h */,
+				D63D7D602101D02E004AE0FA /* ViewController.m */,
+				D63D7D6B2101D032004AE0FA /* main.m */,
+				D63D7D622101D02E004AE0FA /* Main.storyboard */,
+				D63D7D652101D032004AE0FA /* Assets.xcassets */,
+				D63D7D6A2101D032004AE0FA /* Info.plist */,
+				D63D7D8F2101DB31004AE0FA /* Launch Screen.storyboard */,
+			);
+			path = other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D63D7D692101D032004AE0FA /* LaunchScreen.storyboard in Resources */,
+				D63D7D902101DB31004AE0FA /* Launch Screen.storyboard in Resources */,
 				D63D7D662101D032004AE0FA /* Assets.xcassets in Resources */,
 				D63D7D642101D02E004AE0FA /* Main.storyboard in Resources */,
 			);
@@ -306,14 +354,6 @@
 				D63D7D632101D02E004AE0FA /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D63D7D672101D032004AE0FA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D63D7D682101D032004AE0FA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -433,16 +473,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z89FT9DY34;
 				INFOPLIST_FILE = ChatProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mindimp.bonday.ChatProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -450,16 +492,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z89FT9DY34;
 				INFOPLIST_FILE = ChatProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mindimp.bonday.ChatProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
