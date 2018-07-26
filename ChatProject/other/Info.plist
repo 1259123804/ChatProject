@@ -22,8 +22,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<key>MOBAppKey</key>
+	<string>2710400bf2a2c</string>
+	<key>MOBAppSecret</key>
+	<string>b245f4dfa6867488296d4395c27fa81e</string>
+	<key>NSContactsUsageDescription</key>
+	<string>开启通讯录</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

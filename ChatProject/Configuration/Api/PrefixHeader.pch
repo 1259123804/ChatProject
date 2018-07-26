@@ -1,0 +1,69 @@
+//
+//  PrefixHeader.pch
+//  ChatProject
+//
+//  Created by Duke Li on 2018/7/26.
+//  Copyright © 2018年 Duke Li. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+//放在预编译文件 这样其他文件就不用导入了
+#import "Define.h"
+#import "UILabel+MyInit.h"
+#import "AliyunOSSiOS/OSSService.h"
+#import "ReactiveCocoa.h"
+//支付ping++
+#import "Pingpp.h"
+//只要有网络请求
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
+#import "JPUSHService.h"
+//可选，与UIKit+AFNetworking.h冲突，两者二选一即可
+//#import <SDImageCache.h>
+#import <AdSupport/AdSupport.h>
+//头部刷新
+#import <MJRefresh.h>
+//经过封装后的类库
+#import "UIScrollView+Refresh.h"
+#import "RongIMKit.h"
+//按照功能可选
+//#import <FMDB.h>
+//#import <CocoaAsyncSocket.h>
+#import "NetTool.h"
+//弹框显示（经过封装后的类库）
+#import "GXToast.h"
+//集成CocoaLumberjack
+#define publicKey @"a12637e0af4b6d0154c8ce07fafe0017:"
+#define MyAlertView(title, message)   [GXToast showText:title position:GXToastPositionCenter offset:0 duration:2];
+#define MyCoffeeAlertView(title, message) [GXToast showText:title position:GXToastPositionCenter offset:0 duration:2];
+#import "MBProgressHUD.h"
+#import "UIImageView+Method.h"
+#import <WebKit/WebKit.h>
+#import "UIView+Frame.h"
+#import "UIImage+Color.h"
+#import "NSString+Hashing.h"
+#import "MyTools.h"
+#import "MyAFSessionManager.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UIView+SDAutoLayout.h"
+#import "UIImageView+WebCache.h"
+#import "NetInterface.h"
+#import <SMS_SDK/SMSSDK.h>
+
+#import "XGMainBaseViewController.h"
+#import "XGNavigationBaseViewController.h"
+#import "XGMainChatViewController.h"
+#import "XGMainAddressBookViewController.h"
+#import "XGMainDynamicViewController.h"
+#import "XGMainMyInfoViewController.h"
+#import "XGMainTabbarViewController.h"
+#endif
+
+#endif /* PrefixHeader_pch */
