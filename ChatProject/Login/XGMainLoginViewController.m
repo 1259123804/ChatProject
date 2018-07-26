@@ -16,18 +16,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:@"13253595712" zone:@"86" template:@"123456" result:^(NSError *error) {
-       
-        if (!error){
-            
-            MyAlertView(@"发送成功", nil);
-            [SMSSDK commitVerificationCode:@"" phoneNumber:<#(NSString *)#> zone:<#(NSString *)#> result:<#^(NSError *error)result#>]
-            
+    [SMSSDK commitVerificationCode:@"652198" phoneNumber:@"13253595712" zone:@"86" result:^(NSError *error) {
+
+        NSLog(@"%@", error.userInfo[@"description"]);
+
+        if (error){
+
+            MyAlertView(@"验证失败", nil);
+
         }else{
-            
-            MyAlertView(@"发送失败", nil);
+
+            MyAlertView(@"验证成功", nil);
         }
     }];
+//    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:@"13253595712" zone:@"86" template:nil result:^(NSError *error) {
+//
+//        if (!error){
+//
+//            MyAlertView(@"发送成功", nil);
+//
+//        }else{
+//
+//            MyAlertView(@"发送失败", nil);
+//        }
+//    }];
+   
     // Do any additional setup after loading the view.
 }
 

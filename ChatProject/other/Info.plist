@@ -26,8 +26,17 @@
 	<string>2710400bf2a2c</string>
 	<key>MOBAppSecret</key>
 	<string>b245f4dfa6867488296d4395c27fa81e</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string></string>
 	<key>NSContactsUsageDescription</key>
 	<string>开启通讯录</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
