@@ -9,5 +9,5 @@
 #import "XGMainBaseViewController.h"
 
 @interface XGMainLoginViewController : XGMainBaseViewController
-
+@property (nonatomic, assign) BOOL forgetPassword;
 @end

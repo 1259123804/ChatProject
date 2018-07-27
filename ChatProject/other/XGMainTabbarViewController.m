@@ -7,7 +7,6 @@
 //
 
 #import "XGMainTabbarViewController.h"
-#import "XGMainLoginViewController.h"
 @interface XGMainTabbarViewController ()
 
 @end
@@ -27,12 +26,6 @@
         [viewControllers addObject:[self mainControllerWithTitle:titles[i] normalImageName:normalNames[i] selectImageName:selectNames[i]]];
     }
     self.viewControllers = viewControllers;
-    
-    XGMainLoginViewController *loginController = [[XGMainLoginViewController alloc] init];
-    [self presentViewController:loginController animated:YES completion:^{
-        
-        MyAlertView(@"请登录", nil);
-    }];
     // Do any additional setup after loading the view.
 }
 

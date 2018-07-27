@@ -194,7 +194,6 @@
 		D646EC9F21099B5F00DB1488 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = D646EC9521099B5F00DB1488 /* AESCrypt.m */; };
 		D646ECA021099B5F00DB1488 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = D646EC9B21099B5F00DB1488 /* NSData+CommonCrypto.m */; };
 		D646ECA121099B5F00DB1488 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D646EC9C21099B5F00DB1488 /* NSData+Base64.m */; };
-		D646ECA82109AC6000DB1488 /* XGMainBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECA72109AC6000DB1488 /* XGMainBaseViewController.m */; };
 		D646ECB12109ACA900DB1488 /* XGMainChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECB02109ACA900DB1488 /* XGMainChatViewController.m */; };
 		D646ECB42109ACC600DB1488 /* XGMainMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECB32109ACC600DB1488 /* XGMainMyInfoViewController.m */; };
 		D646ECB72109ACD700DB1488 /* XGMainDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECB62109ACD700DB1488 /* XGMainDynamicViewController.m */; };
@@ -212,6 +211,11 @@
 		D646ECD92109D87A00DB1488 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D646ECD72109D87900DB1488 /* AddressBook.framework */; };
 		D646ECDA2109D87A00DB1488 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D646ECD82109D87A00DB1488 /* AddressBookUI.framework */; };
 		D646ECDD2109DB9A00DB1488 /* XGNavigationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECDC2109DB9A00DB1488 /* XGNavigationBaseViewController.m */; };
+		D646ECE0210AEF8500DB1488 /* XGMainBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECDF210AEF8400DB1488 /* XGMainBaseViewController.m */; };
+		D646ECE5210AF70400DB1488 /* XGLoginPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECE4210AF70400DB1488 /* XGLoginPasswordViewController.m */; };
+		D646ECE8210B0A2500DB1488 /* XGLoginAddInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECE7210B0A2500DB1488 /* XGLoginAddInfoViewController.m */; };
+		D646ECEB210B235100DB1488 /* XGRegisterAddInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECEA210B235100DB1488 /* XGRegisterAddInfoViewController.m */; };
+		D646ECEE210B2CAE00DB1488 /* XGReplacePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECED210B2CAE00DB1488 /* XGReplacePasswordViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -502,7 +506,6 @@
 		D646EC9B21099B5F00DB1488 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		D646EC9C21099B5F00DB1488 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		D646ECA62109AC6000DB1488 /* XGMainBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainBaseViewController.h; sourceTree = "<group>"; };
-		D646ECA72109AC6000DB1488 /* XGMainBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainBaseViewController.m; sourceTree = "<group>"; };
 		D646ECAF2109ACA900DB1488 /* XGMainChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainChatViewController.h; sourceTree = "<group>"; };
 		D646ECB02109ACA900DB1488 /* XGMainChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainChatViewController.m; sourceTree = "<group>"; };
 		D646ECB22109ACC600DB1488 /* XGMainMyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainMyInfoViewController.h; sourceTree = "<group>"; };
@@ -528,6 +531,15 @@
 		D646ECD82109D87A00DB1488 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		D646ECDB2109DB9A00DB1488 /* XGNavigationBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGNavigationBaseViewController.h; sourceTree = "<group>"; };
 		D646ECDC2109DB9A00DB1488 /* XGNavigationBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGNavigationBaseViewController.m; sourceTree = "<group>"; };
+		D646ECDF210AEF8400DB1488 /* XGMainBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XGMainBaseViewController.m; path = /Users/lixiaoguang/Desktop/ChatProject/ChatProject/other/XGMainBaseViewController.m; sourceTree = "<absolute>"; };
+		D646ECE3210AF70400DB1488 /* XGLoginPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGLoginPasswordViewController.h; sourceTree = "<group>"; };
+		D646ECE4210AF70400DB1488 /* XGLoginPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGLoginPasswordViewController.m; sourceTree = "<group>"; };
+		D646ECE6210B0A2500DB1488 /* XGLoginAddInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGLoginAddInfoViewController.h; sourceTree = "<group>"; };
+		D646ECE7210B0A2500DB1488 /* XGLoginAddInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGLoginAddInfoViewController.m; sourceTree = "<group>"; };
+		D646ECE9210B235100DB1488 /* XGRegisterAddInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGRegisterAddInfoViewController.h; sourceTree = "<group>"; };
+		D646ECEA210B235100DB1488 /* XGRegisterAddInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGRegisterAddInfoViewController.m; sourceTree = "<group>"; };
+		D646ECEC210B2CAE00DB1488 /* XGReplacePasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGReplacePasswordViewController.h; sourceTree = "<group>"; };
+		D646ECED210B2CAE00DB1488 /* XGReplacePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGReplacePasswordViewController.m; sourceTree = "<group>"; };
 		D8A605C464B944200E93EB19 /* Pods-ChatProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProjectTests/Pods-ChatProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAD04989C47492A1B99B173F /* Pods-ChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProject/Pods-ChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		F98F691EC6B8C2939202ED9D /* Pods-ChatProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProjectUITests/Pods-ChatProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -660,6 +672,12 @@
 			children = (
 				D646ECBB2109AD2400DB1488 /* XGMainLoginViewController.h */,
 				D646ECBC2109AD2400DB1488 /* XGMainLoginViewController.m */,
+				D646ECE3210AF70400DB1488 /* XGLoginPasswordViewController.h */,
+				D646ECE4210AF70400DB1488 /* XGLoginPasswordViewController.m */,
+				D646ECE6210B0A2500DB1488 /* XGLoginAddInfoViewController.h */,
+				D646ECE7210B0A2500DB1488 /* XGLoginAddInfoViewController.m */,
+				D646ECEC210B2CAE00DB1488 /* XGReplacePasswordViewController.h */,
+				D646ECED210B2CAE00DB1488 /* XGReplacePasswordViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -669,6 +687,8 @@
 			children = (
 				D646ECB82109AD1700DB1488 /* XGMainRegisterViewController.h */,
 				D646ECB92109AD1700DB1488 /* XGMainRegisterViewController.m */,
+				D646ECE9210B235100DB1488 /* XGRegisterAddInfoViewController.h */,
+				D646ECEA210B235100DB1488 /* XGRegisterAddInfoViewController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -706,7 +726,7 @@
 				D646ECC32109AF5300DB1488 /* XGMainTabbarViewController.h */,
 				D646ECC42109AF5300DB1488 /* XGMainTabbarViewController.m */,
 				D646ECA62109AC6000DB1488 /* XGMainBaseViewController.h */,
-				D646ECA72109AC6000DB1488 /* XGMainBaseViewController.m */,
+				D646ECDF210AEF8400DB1488 /* XGMainBaseViewController.m */,
 				D646ECDB2109DB9A00DB1488 /* XGNavigationBaseViewController.h */,
 				D646ECDC2109DB9A00DB1488 /* XGNavigationBaseViewController.m */,
 				D63D7D5C2101D02E004AE0FA /* AppDelegate.h */,
@@ -808,8 +828,8 @@
 		D646EB1521097CEF00DB1488 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
-				D646EB1621097CEF00DB1488 /* GXToast.m */,
 				D646EB1721097CEF00DB1488 /* GXToast.h */,
+				D646EB1621097CEF00DB1488 /* GXToast.m */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -1535,6 +1555,7 @@
 				D646EB5E21097CF000DB1488 /* XGPrivateConversationViewController.m in Sources */,
 				D646EC8921099AE500DB1488 /* ChatEmojiView.m in Sources */,
 				D646EC8621099AE500DB1488 /* ChatKeyBoardAnimationView.m in Sources */,
+				D646ECE5210AF70400DB1488 /* XGLoginPasswordViewController.m in Sources */,
 				D646EC9D21099B5F00DB1488 /* NSData+AES256.m in Sources */,
 				D646EB6A21097CF000DB1488 /* RCDMessageContentModel.m in Sources */,
 				D646EB6821097CF000DB1488 /* FMResultSet.m in Sources */,
@@ -1560,12 +1581,13 @@
 				D646EC8521099AE500DB1488 /* ChatMessageSound.m in Sources */,
 				D646EAF4210971B600DB1488 /* UIView+Frame.m in Sources */,
 				D646EB032109759600DB1488 /* KeychainItemWrapper.m in Sources */,
+				D646ECEB210B235100DB1488 /* XGRegisterAddInfoViewController.m in Sources */,
 				D646ECC52109AF5300DB1488 /* XGMainTabbarViewController.m in Sources */,
-				D646ECA82109AC6000DB1488 /* XGMainBaseViewController.m in Sources */,
 				D646EB5621097CF000DB1488 /* AFHttpTool.m in Sources */,
 				D646ECB42109ACC600DB1488 /* XGMainMyInfoViewController.m in Sources */,
 				D646EB6721097CF000DB1488 /* FMDatabasePool.m in Sources */,
 				D646ECA021099B5F00DB1488 /* NSData+CommonCrypto.m in Sources */,
+				D646ECEE210B2CAE00DB1488 /* XGReplacePasswordViewController.m in Sources */,
 				D646ECA121099B5F00DB1488 /* NSData+Base64.m in Sources */,
 				D646EB5D21097CF000DB1488 /* XGChatListViewController.m in Sources */,
 				D646EAF7210971B600DB1488 /* UILabel+MyInit.m in Sources */,
@@ -1573,6 +1595,7 @@
 				D646EB6521097CF000DB1488 /* FMDatabaseAdditions.m in Sources */,
 				D646ECBD2109AD2400DB1488 /* XGMainLoginViewController.m in Sources */,
 				D646ECC22109ADF600DB1488 /* XGMainAddressBookViewController.m in Sources */,
+				D646ECE8210B0A2500DB1488 /* XGLoginAddInfoViewController.m in Sources */,
 				D646EAFB210971B600DB1488 /* UIImage+Color.m in Sources */,
 				D646EB6021097CF000DB1488 /* NetTool.m in Sources */,
 				D646EC8421099AE500DB1488 /* ChatOtherView.m in Sources */,
@@ -1588,6 +1611,7 @@
 				D646EB5321097CF000DB1488 /* UIView+SDAutoLayout.m in Sources */,
 				D646ECB72109ACD700DB1488 /* XGMainDynamicViewController.m in Sources */,
 				D646EC7C21099AE400DB1488 /* Emoji.m in Sources */,
+				D646ECE0210AEF8500DB1488 /* XGMainBaseViewController.m in Sources */,
 				D646EC8321099AE400DB1488 /* CommentEmoji.m in Sources */,
 				D646EAF6210971B600DB1488 /* NSObject+Parse.m in Sources */,
 				D646EB6321097CF000DB1488 /* RCDTestMessageCell.m in Sources */,

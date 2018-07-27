@@ -56,7 +56,9 @@
 #import "UIImageView+WebCache.h"
 #import "NetInterface.h"
 #import <SMS_SDK/SMSSDK.h>
+#import <AVFoundation/AVFoundation.h>
 
+#import "XGLoginPasswordViewController.h"
 #import "XGMainBaseViewController.h"
 #import "XGNavigationBaseViewController.h"
 #import "XGMainChatViewController.h"

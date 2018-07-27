@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
 @interface AppDelegate ()
-
+@property (nonatomic, strong) XGLoginPasswordViewController *loginViewController;
 @end
 
 @implementation AppDelegate
@@ -23,7 +22,20 @@
     XGMainTabbarViewController *tabbarController = [[XGMainTabbarViewController alloc] init];
     self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
+    [self.window.rootViewController presentViewController:self.loginViewController animated:YES completion:^{
+        
+        MyAlertView(@"请登录", nil);
+    }];
     return YES;
+}
+
+- (XGLoginPasswordViewController *)loginViewController{
+    
+    if (_loginViewController == nil){
+        
+        _loginViewController = [[XGLoginPasswordViewController alloc] init];
+    }
+    return _loginViewController;
 }
 
 
