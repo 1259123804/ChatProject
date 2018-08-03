@@ -35,6 +35,8 @@
 	<string></string>
 	<key>NSContactsUsageDescription</key>
 	<string>开启通讯录</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>允许获取用户位置</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>

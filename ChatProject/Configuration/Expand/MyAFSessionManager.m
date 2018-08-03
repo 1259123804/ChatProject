@@ -13,13 +13,13 @@
 + (instancetype)initMyAFSessionManagerWithType:(MyAFSessionManagerType)managerType
 {
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"api.bonday.cn" ofType:@".cer"];
-    NSData *cerData = [NSData dataWithContentsOfFile:path];
-    NSSet *cerSet = [NSSet setWithObjects:cerData, nil];
-    
-    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:cerSet];
-    policy.allowInvalidCertificates = YES;
-    policy.validatesDomainName = YES;
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"api.bonday.cn" ofType:@".cer"];
+//    NSData *cerData = [NSData dataWithContentsOfFile:path];
+//    NSSet *cerSet = [NSSet setWithObjects:cerData, nil];
+//    
+//    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:cerSet];
+//    policy.allowInvalidCertificates = YES;
+//    policy.validatesDomainName = YES;
     
     
     MyAFSessionManager *manager = [super manager];
@@ -89,6 +89,24 @@
     }
     
     return manager;
+}
+
++ (NSString *)getAppSign{
+    
+    NSString *sign = nil;
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSTimeInterval interval = [NSDate date].timeIntervalSince1970;
+    double longitude, latitude = 0;
+    NSDictionary *signDic = @{@"cv": app_Version, @"os": @"ios", @"timestamp": @(interval)};
+    
+    MyTools *tools = [MyTools defaultTools];
+    if (tools.longitude != 0 && tools.latitude != 0){
+        
+        longitude = tools.longitude;
+        latitude = tools.latitude;
+    }
+    return sign;
 }
 
 //发送请求

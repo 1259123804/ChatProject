@@ -15,6 +15,70 @@
 #import "KeychainItemWrapper.h"
 #define SoltKey @"RzWXIlfXVrlTK999"
 @implementation MyTools
++ (MyTools *)defaultTools{
+    
+    static MyTools *tools = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (tools == nil){
+            
+            tools = [[MyTools alloc] init];
+        }
+    });
+    return tools;
+}
+
+- (void)getLocation{
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager.delegate = self;
+        [self.locationManager requestWhenInUseAuthorization];
+        //设置寻址精度
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = 5.0;
+        [self.locationManager startUpdatingLocation];
+    }
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    //设置提示提醒用户打开定位服务
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"允许定位提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    [self.locationManager stopUpdatingHeading];
+    CLLocation *currentLocation = [locations lastObject];
+    self.latitude = currentLocation.coordinate.latitude;
+    self.longitude = currentLocation.coordinate.longitude;
+    
+//    //反地理编码
+//    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//        if (placemarks.count > 0) {
+//            CLPlacemark *placeMark = placemarks[0];
+//            currentCity = placeMark.locality;
+//            if (!currentCity) {
+//                currentCity = @"无法定位当前城市";
+//            }
+//
+//            /*看需求定义一个全局变量来接收赋值*/
+//            NSLog(@"----%@",placeMark.country);//当前国家
+//            NSLog(@"%@",currentCity);//当前的城市
+//            //            NSLog(@"%@",placeMark.subLocality);//当前的位置
+//            //            NSLog(@"%@",placeMark.thoroughfare);//当前街道
+//            //            NSLog(@"%@",placeMark.name);//具体地址
+//
+//        }
+//    }];
+    
+}
+
 
 + (BOOL)judgePhoneNumLegalWithPhone:(NSString *)phone
 {
@@ -849,5 +913,4 @@
                        "</html>", content];
     return htmls;
 }
-
 @end

@@ -7,8 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+@interface MyTools : NSObject <UIAlertViewDelegate, CLLocationManagerDelegate>
 
-@interface MyTools : NSObject <UIAlertViewDelegate>
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, assign) double latitude; //经度
+@property (nonatomic, assign) double longitude; //纬度
+@property (nonatomic, copy) void(^getLocationComplete)();
+@property (nonatomic, retain) UIViewController *topViewController;
++ (MyTools *)defaultTools;
+- (void)getLocation;
 
 //判断手机号
 + (BOOL)judgePhoneNumLegalWithPhone:(NSString *)phone;
@@ -71,5 +79,5 @@
 //wkwebView内部跳转验证
 + (void)wkwebView:(WKWebView *)webView jumpBrowser:(BOOL)jumpBrowser checkAction:(WKNavigationAction *)navigationAction handler:(void(^)(WKNavigationActionPolicy))handler;
 + (NSString *)suitImageViewAndFontSizeWithString:(NSString *)content;
-@property (nonatomic, retain) UIViewController *topViewController;
+
 @end

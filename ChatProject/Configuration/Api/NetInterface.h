@@ -9,5 +9,6 @@
 #ifndef NetInterface_h
 #define NetInterface_h
 
+#define kTestApi @"http://111.231.67.131:1000/api" //测试接口
 
 #endif /* NetInterface_h */
