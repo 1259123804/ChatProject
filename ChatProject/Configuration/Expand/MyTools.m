@@ -55,8 +55,12 @@
     
     [self.locationManager stopUpdatingHeading];
     CLLocation *currentLocation = [locations lastObject];
-    self.latitude = currentLocation.coordinate.latitude;
-    self.longitude = currentLocation.coordinate.longitude;
+    self.latitude = [NSString stringWithFormat:@"%.1f", currentLocation.coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%.1f", currentLocation.coordinate.longitude];
+    if (self.getLocationComplete){
+        
+        self.getLocationComplete();
+    }
     
 //    //反地理编码
 //    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

@@ -40,13 +40,7 @@
         {
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
-            NSString *tokenStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-            if (tokenStr) {
-                [manager.requestSerializer setValue:[@"Bearer "stringByAppendingString:tokenStr] forHTTPHeaderField:@"Authorization"];
-            }else{
-                
-                [manager.requestSerializer setValue:[MyTools getUdid] forHTTPHeaderField:@"udid"];
-            }
+           [manager.requestSerializer setValue:[self getAppSign] forHTTPHeaderField:@"sign"];
         }
             break;
             
@@ -67,12 +61,7 @@
             [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
             [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-            NSString *tokenStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-            if (tokenStr) {
-                [manager.requestSerializer setValue:[@"Bearer "stringByAppendingString:tokenStr] forHTTPHeaderField:@"Authorization"];
-            }else{
-                [manager.requestSerializer setValue:[MyTools getUdid]  forHTTPHeaderField:@"udid"];
-            }
+            [manager.requestSerializer setValue:[self getAppSign] forHTTPHeaderField:@"sign"];
         }
             break;
         case 4:
@@ -93,19 +82,39 @@
 
 + (NSString *)getAppSign{
     
-    NSString *sign = nil;
+    NSString *sign = @"";
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    NSTimeInterval interval = [NSDate date].timeIntervalSince1970;
-    double longitude, latitude = 0;
-    NSDictionary *signDic = @{@"cv": app_Version, @"os": @"ios", @"timestamp": @(interval)};
-    
+    NSString *interval =  [NSString stringWithFormat:@"%.0f",[NSDate date].timeIntervalSince1970];
+    NSString *longitude, *latitude = @"";
+    NSMutableDictionary *signDic = [@{@"cv": app_Version, @"os": @"ios", @"timestamp": interval, @"lng": longitude, @"lat":latitude} mutableCopy];
+    NSString *token = DefaultsValueForKey(@"token");
+    if (token){
+        [signDic setValue:token forKey:@"token"];
+    }
     MyTools *tools = [MyTools defaultTools];
     if (tools.longitude != 0 && tools.latitude != 0){
         
         longitude = tools.longitude;
         latitude = tools.latitude;
+        [signDic setValue:longitude forKey:@"lng"];
+        [signDic setValue:latitude forKey:@"lat"];
     }
+    NSArray *keys = [signDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        
+        return NSOrderedDescending;
+    }];
+    
+    for (int i = 0; i < keys.count; i++){
+        
+        NSString *key = keys[i];
+        sign = [key stringByAppendingString:signDic[key]];
+        if (i == keys.count - 1){
+           
+            sign = [sign stringByAppendingString:@"qq2622298942"];
+        }
+    }
+    sign = [sign MD5Hash];
     return sign;
 }
 

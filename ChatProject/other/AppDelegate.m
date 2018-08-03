@@ -18,7 +18,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    
+    MyTools *tool = [MyTools defaultTools];
+    [tool getLocation];
     XGMainTabbarViewController *tabbarController = [[XGMainTabbarViewController alloc] init];
     self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];

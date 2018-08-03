@@ -11,9 +11,9 @@
 @interface MyTools : NSObject <UIAlertViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, assign) double latitude; //经度
-@property (nonatomic, assign) double longitude; //纬度
-@property (nonatomic, copy) void(^getLocationComplete)();
+@property (nonatomic, copy) NSString *latitude; //经度
+@property (nonatomic, copy) NSString *longitude; //纬度
+@property (nonatomic, copy) void(^getLocationComplete)(void);
 @property (nonatomic, retain) UIViewController *topViewController;
 + (MyTools *)defaultTools;
 - (void)getLocation;
