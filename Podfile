@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '8.0'
 
 target 'ChatProject' do
 
@@ -26,7 +26,7 @@ target 'ChatProject' do
 
 
   #实现滚动控件中,弹出键盘时,自动移动输入框位置,防止被键盘遮盖的功能
-  pod 'IQKeyboardManager', '~> 6.0.3'
+  pod 'IQKeyboardManager'
 
   pod 'Bugly','~> 2.4.2'
 
@@ -55,6 +55,10 @@ target 'ChatProject' do
 
   #Jpush
   pod 'JPush', '~> 2.1.9'
+  
+  #SMSSDK
+#pod 'MOBFoundation_IDFA'
+#pod 'SMSSDK'
 
   #ReactiveCocoa
   pod 'ReactiveCocoa', :git => 'https://github.com/zhao0/ReactiveCocoa.git', :tag => '2.5.2'
