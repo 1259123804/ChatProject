@@ -718,7 +718,7 @@
 //获取课点，个人信息
 + (void)getLessonPointWithBlock:(void (^)(void))completion{
     
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"token"]) {
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"user_token"]) {
         
         NSString *url = @""; //获取个人信息
         url = [NSString stringWithFormat:url, [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"]];
@@ -925,9 +925,9 @@
 + (void)savePersonInfoWithDic:(NSDictionary *)infoDic{
     
     NSDictionary *user = infoDic[@"user"];
-    DefaultsSetValueForKey(infoDic[@"token"], @"user_token");
-    DefaultsSetValueForKey(infoDic[@"name"], @"user_name");
-    DefaultsSetValueForKey(infoDic[@"avatar"], @"user_avatar");
+    DefaultsSetValueForKey(infoDic[@"token"], kUser_token);
+    DefaultsSetValueForKey(user[@"name"], kUser_name);
+    DefaultsSetValueForKey(user[@"avatar"], kUser_avatar);
     DefaultsSynchronize;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
 }

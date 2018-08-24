@@ -57,12 +57,11 @@
 #import "NetInterface.h"
 #import <SMS_SDK/SMSSDK.h>
 #import <AVFoundation/AVFoundation.h>
-
 #import "XGLoginPasswordViewController.h"
 #import "XGMainBaseViewController.h"
 #import "XGNavigationBaseViewController.h"
 #import "XGMainChatViewController.h"
-#import "XGMainAddressBookViewController.h"
+#import "XGMainFindViewController.h"
 #import "XGMainDynamicViewController.h"
 #import "XGMainMyInfoViewController.h"
 #import "XGMainTabbarViewController.h"

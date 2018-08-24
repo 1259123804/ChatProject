@@ -9,5 +9,6 @@
 #import "XGMainBaseViewController.h"
 
 @interface XGMainChatViewController : XGMainBaseViewController
-
+@property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UIView *addImageView;
 @end

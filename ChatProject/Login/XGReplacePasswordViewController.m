@@ -9,13 +9,10 @@
 #import "XGReplacePasswordViewController.h"
 
 @interface XGReplacePasswordViewController ()<UITextFieldDelegate>
-@property (nonatomic, strong) UIView *loginBackView;
-@property (nonatomic, strong) UILabel *loginTitleLabel;
 @property (nonatomic, strong) UIImageView *loginBackgroundView;
 @property (nonatomic, strong) UIView *loginPasswordView;
 @property (nonatomic, strong) UITextField *loginPasswordTextField;
 @property (nonatomic, strong) UIButton *loginBtn;
-@property (nonatomic, strong) UILabel *loginDesLabel;
 @end
 
 @implementation XGReplacePasswordViewController
@@ -24,25 +21,10 @@
 #pragma mark - 生命周期及系统方法
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:self.loginBackView];
-    [self.view addSubview:self.loginTitleLabel];
+    self.loginTitleLabel.text = @"找回密码";
     [self.view addSubview:self.loginBackgroundView];
     [self.loginBackgroundView addSubview:self.loginPasswordView];
     [self.loginBackgroundView addSubview:self.loginBtn];
-    [self.view addSubview:self.loginDesLabel];
-    
-    self.loginBackView.sd_layout
-    .leftSpaceToView(self.view, 20)
-    .topSpaceToView(self.view, 60)
-    .widthIs(30)
-    .heightIs(30);
-    
-    self.loginTitleLabel.sd_layout
-    .centerYEqualToView(self.loginBackView)
-    .centerXEqualToView(self.view)
-    .widthIs(200)
-    .heightIs(50);
     
     self.loginBackgroundView.sd_layout
     .leftSpaceToView(self.view, 30)
@@ -60,12 +42,6 @@
     .leftEqualToView(self.loginPasswordView)
     .rightEqualToView(self.loginPasswordView)
     .topSpaceToView(self.loginPasswordView, 30)
-    .heightIs(40);
-    
-    self.loginDesLabel.sd_layout
-    .centerXEqualToView(self.view)
-    .bottomSpaceToView(self.view, 50)
-    .widthIs(kScreenWidth)
     .heightIs(40);
     
     // Do any additional setup after loading the view.
@@ -117,22 +93,6 @@
 }
 
 #pragma mark - 视图及控制器创建方法
-- (UIView *)loginBackView{
-    
-    if (_loginBackView == nil){
-        
-        _loginBackView = [[UIView alloc] init];
-        _loginBackView.backgroundColor = [UIColor redColor];
-        UITapGestureRecognizer *backTap = [[UITapGestureRecognizer alloc] init];
-        [_loginBackView addGestureRecognizer:backTap];
-        [backTap.rac_gestureSignal subscribeNext:^(id x) {
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-        }];
-    }
-    return _loginBackView;
-}
 
 - (UIImageView *)loginBackgroundView{
     
@@ -156,6 +116,8 @@
         layer.path = path.CGPath;
         layer.fillColor = [UIColor whiteColor].CGColor;
         layer.frame = _loginBackgroundView.bounds;
+        layer.cornerRadius = 6.0;
+        layer.masksToBounds = YES;
         [_loginBackgroundView.layer addSublayer:layer];
         
     }
@@ -164,7 +126,7 @@
 - (UIView *)lineView{
     
     UIView *lineView = [UIView new];
-    lineView.backgroundColor = UIColorWithRGBA(150, 150, 150, 1);
+    lineView.backgroundColor = UIColorWithRGBA(127, 127, 127, 1);
     return lineView;
 }
 
@@ -200,11 +162,10 @@
         _loginPasswordTextField.borderStyle = UITextBorderStyleNone;
         _loginPasswordTextField.placeholder = @"设置不少于6位的密码";
         _loginPasswordTextField.delegate = self;
+        _loginPasswordTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginPasswordTextField;
 }
-
-
 
 - (UIButton *)loginBtn{
     
@@ -213,14 +174,31 @@
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginBtn setBackgroundColor:[UIColor redColor]];
+        _loginBtn.layer.cornerRadius = 4.0;
+        _loginBtn.layer.masksToBounds = YES;
+        [_loginBtn setBackgroundColor:kBtnColor];
         [[_loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             
             [self checkCanLoginState:^(BOOL canLoginState) {
                 
                 if (canLoginState){
                     
-                    MyAlertView(@"登录成功", nil);
+                    NSDictionary *params = @{@"password": self.loginPasswordTextField.text};
+                    [MyAFSessionManager requestWithURLString:[kTestApi stringByAppendingString:kForgotPassword_reset] parameters:params requestType:MyRequestTypePost managerType:MyAFSessionManagerTypeJsonWithToken success:^(id  _Nullable responseObject) {
+                        
+                        if ([responseObject[@"status"] intValue] == 0) {
+                            
+                            MyAlertView(responseObject[@"result"][@"msg"], nil);
+                            
+                        }else{
+                            
+                            MyAlertView(@"修改失败，请重试", nil);
+                        }
+                        
+                    } failure:^(NSError * _Nonnull error) {
+                        
+                        MyAlertView(@"网络错误", nil);
+                    }];
                 }
             }];
         }];
@@ -228,23 +206,6 @@
     return _loginBtn;
 }
 
-- (UILabel *)loginTitleLabel{
-    
-    if (_loginTitleLabel == nil){
-        
-        _loginTitleLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:18 textColor:[UIColor whiteColor] string:@"找回密码" systemFont:NO];
-    }
-    return _loginTitleLabel;
-}
-
-- (UILabel *)loginDesLabel{
-    
-    if (_loginDesLabel == nil){
-        
-        _loginDesLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:14 textColor:[UIColor grayColor] string:@"登录表示同意《*****服务》" systemFont:YES];
-    }
-    return _loginDesLabel;
-}
 /*
 #pragma mark - Navigation
 

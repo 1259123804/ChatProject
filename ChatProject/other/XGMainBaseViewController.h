@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface XGMainBaseViewController : UIViewController
-
+@property (nonatomic, strong) UIView *navBarView;
+@property (nonatomic, strong) UILabel *navTitleLabel;
 @end

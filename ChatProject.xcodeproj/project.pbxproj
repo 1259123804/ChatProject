@@ -201,7 +201,6 @@
 		D646ECB72109ACD700DB1488 /* XGMainDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECB62109ACD700DB1488 /* XGMainDynamicViewController.m */; };
 		D646ECBA2109AD1700DB1488 /* XGMainRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECB92109AD1700DB1488 /* XGMainRegisterViewController.m */; };
 		D646ECBD2109AD2400DB1488 /* XGMainLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECBC2109AD2400DB1488 /* XGMainLoginViewController.m */; };
-		D646ECC22109ADF600DB1488 /* XGMainAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECC12109ADF600DB1488 /* XGMainAddressBookViewController.m */; };
 		D646ECC52109AF5300DB1488 /* XGMainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECC42109AF5300DB1488 /* XGMainTabbarViewController.m */; };
 		D646ECCB2109D7B500DB1488 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D646ECC82109D7B500DB1488 /* SMS_SDK.framework */; };
 		D646ECCC2109D7B500DB1488 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D646ECCA2109D7B500DB1488 /* MOBFoundation.framework */; };
@@ -217,6 +216,19 @@
 		D646ECE8210B0A2500DB1488 /* XGLoginAddInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECE7210B0A2500DB1488 /* XGLoginAddInfoViewController.m */; };
 		D646ECEB210B235100DB1488 /* XGRegisterAddInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECEA210B235100DB1488 /* XGRegisterAddInfoViewController.m */; };
 		D646ECEE210B2CAE00DB1488 /* XGReplacePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D646ECED210B2CAE00DB1488 /* XGReplacePasswordViewController.m */; };
+		D6831939212D6AE700F3741D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6831938212D6AE700F3741D /* AssetsLibrary.framework */; };
+		D683193B212D6C1B00F3741D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683193A212D6C1A00F3741D /* AudioToolbox.framework */; };
+		D683193D212D6C2200F3741D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683193C212D6C2200F3741D /* AVFoundation.framework */; };
+		D683193F212D6C2A00F3741D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683193E212D6C2900F3741D /* CFNetwork.framework */; };
+		D6831941212D6C3500F3741D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6831940212D6C3400F3741D /* CoreAudio.framework */; };
+		D6831943212D6C3E00F3741D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6831942212D6C3E00F3741D /* CoreGraphics.framework */; };
+		D6831945212D6C4400F3741D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6831944212D6C4400F3741D /* CoreLocation.framework */; };
+		D6831947212D6C4D00F3741D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6831946212D6C4D00F3741D /* CoreMedia.framework */; };
+		D6831949212D6C5600F3741D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6831948212D6C5600F3741D /* CoreTelephony.framework */; };
+		D683194B212D6C7300F3741D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683194A212D6C7300F3741D /* CoreVideo.framework */; };
+		D683194D212D6C7B00F3741D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683194C212D6C7B00F3741D /* ImageIO.framework */; };
+		D683194F212D6CF400F3741D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D683194E212D6CF400F3741D /* libc++.tbd */; };
+		D6831953212EC22600F3741D /* XGMainFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6831952212EC22600F3741D /* XGMainFindViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -520,8 +532,6 @@
 		D646ECB92109AD1700DB1488 /* XGMainRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainRegisterViewController.m; sourceTree = "<group>"; };
 		D646ECBB2109AD2400DB1488 /* XGMainLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainLoginViewController.h; sourceTree = "<group>"; };
 		D646ECBC2109AD2400DB1488 /* XGMainLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainLoginViewController.m; sourceTree = "<group>"; };
-		D646ECC02109ADF600DB1488 /* XGMainAddressBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainAddressBookViewController.h; sourceTree = "<group>"; };
-		D646ECC12109ADF600DB1488 /* XGMainAddressBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainAddressBookViewController.m; sourceTree = "<group>"; };
 		D646ECC32109AF5300DB1488 /* XGMainTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainTabbarViewController.h; sourceTree = "<group>"; };
 		D646ECC42109AF5300DB1488 /* XGMainTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainTabbarViewController.m; sourceTree = "<group>"; };
 		D646ECC82109D7B500DB1488 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
@@ -543,6 +553,20 @@
 		D646ECEA210B235100DB1488 /* XGRegisterAddInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGRegisterAddInfoViewController.m; sourceTree = "<group>"; };
 		D646ECEC210B2CAE00DB1488 /* XGReplacePasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGReplacePasswordViewController.h; sourceTree = "<group>"; };
 		D646ECED210B2CAE00DB1488 /* XGReplacePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGReplacePasswordViewController.m; sourceTree = "<group>"; };
+		D6831938212D6AE700F3741D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D683193A212D6C1A00F3741D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D683193C212D6C2200F3741D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D683193E212D6C2900F3741D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D6831940212D6C3400F3741D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D6831942212D6C3E00F3741D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D6831944212D6C4400F3741D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D6831946212D6C4D00F3741D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D6831948212D6C5600F3741D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D683194A212D6C7300F3741D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D683194C212D6C7B00F3741D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D683194E212D6CF400F3741D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		D6831951212EC22600F3741D /* XGMainFindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainFindViewController.h; sourceTree = "<group>"; };
+		D6831952212EC22600F3741D /* XGMainFindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainFindViewController.m; sourceTree = "<group>"; };
 		D8A605C464B944200E93EB19 /* Pods-ChatProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProjectTests/Pods-ChatProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAD04989C47492A1B99B173F /* Pods-ChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProject/Pods-ChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		F98F691EC6B8C2939202ED9D /* Pods-ChatProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProjectUITests/Pods-ChatProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -553,6 +577,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D683194F212D6CF400F3741D /* libc++.tbd in Frameworks */,
+				D683194D212D6C7B00F3741D /* ImageIO.framework in Frameworks */,
+				D683194B212D6C7300F3741D /* CoreVideo.framework in Frameworks */,
+				D6831949212D6C5600F3741D /* CoreTelephony.framework in Frameworks */,
+				D6831947212D6C4D00F3741D /* CoreMedia.framework in Frameworks */,
+				D6831945212D6C4400F3741D /* CoreLocation.framework in Frameworks */,
+				D6831943212D6C3E00F3741D /* CoreGraphics.framework in Frameworks */,
+				D6831941212D6C3500F3741D /* CoreAudio.framework in Frameworks */,
+				D683193F212D6C2A00F3741D /* CFNetwork.framework in Frameworks */,
+				D683193D212D6C2200F3741D /* AVFoundation.framework in Frameworks */,
+				D683193B212D6C1B00F3741D /* AudioToolbox.framework in Frameworks */,
+				D6831939212D6AE700F3741D /* AssetsLibrary.framework in Frameworks */,
 				D646ECD92109D87A00DB1488 /* AddressBook.framework in Frameworks */,
 				D646ECDA2109D87A00DB1488 /* AddressBookUI.framework in Frameworks */,
 				D646ECD62109D86800DB1488 /* libstdc++.tbd in Frameworks */,
@@ -601,6 +637,18 @@
 		C00409DE3E1201AD5D210312 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D683194E212D6CF400F3741D /* libc++.tbd */,
+				D683194C212D6C7B00F3741D /* ImageIO.framework */,
+				D683194A212D6C7300F3741D /* CoreVideo.framework */,
+				D6831948212D6C5600F3741D /* CoreTelephony.framework */,
+				D6831946212D6C4D00F3741D /* CoreMedia.framework */,
+				D6831944212D6C4400F3741D /* CoreLocation.framework */,
+				D6831942212D6C3E00F3741D /* CoreGraphics.framework */,
+				D6831940212D6C3400F3741D /* CoreAudio.framework */,
+				D683193E212D6C2900F3741D /* CFNetwork.framework */,
+				D683193C212D6C2200F3741D /* AVFoundation.framework */,
+				D683193A212D6C1A00F3741D /* AudioToolbox.framework */,
+				D6831938212D6AE700F3741D /* AssetsLibrary.framework */,
 				D646ECD72109D87900DB1488 /* AddressBook.framework */,
 				D646ECD82109D87A00DB1488 /* AddressBookUI.framework */,
 				D646ECD52109D86800DB1488 /* libstdc++.tbd */,
@@ -644,7 +692,7 @@
 				D63D7D932101E00D004AE0FA /* Login */,
 				D63D7D942101E023004AE0FA /* Register */,
 				D63D7D952101E042004AE0FA /* Chat */,
-				D646ECBF2109AD6900DB1488 /* AddressBook */,
+				D646ECBF2109AD6900DB1488 /* Find */,
 				D63D7D962101E04F004AE0FA /* Dynamic */,
 				D63D7D972101E08E004AE0FA /* MyInfo */,
 				D63D7D982101E0B2004AE0FA /* other */,
@@ -1170,13 +1218,13 @@
 			path = AES;
 			sourceTree = "<group>";
 		};
-		D646ECBF2109AD6900DB1488 /* AddressBook */ = {
+		D646ECBF2109AD6900DB1488 /* Find */ = {
 			isa = PBXGroup;
 			children = (
-				D646ECC02109ADF600DB1488 /* XGMainAddressBookViewController.h */,
-				D646ECC12109ADF600DB1488 /* XGMainAddressBookViewController.m */,
+				D6831951212EC22600F3741D /* XGMainFindViewController.h */,
+				D6831952212EC22600F3741D /* XGMainFindViewController.m */,
 			);
-			path = AddressBook;
+			path = Find;
 			sourceTree = "<group>";
 		};
 		D646ECC62109D7B500DB1488 /* SDK */ = {
@@ -1599,7 +1647,6 @@
 				D63D7D5E2101D02E004AE0FA /* AppDelegate.m in Sources */,
 				D646EB6521097CF000DB1488 /* FMDatabaseAdditions.m in Sources */,
 				D646ECBD2109AD2400DB1488 /* XGMainLoginViewController.m in Sources */,
-				D646ECC22109ADF600DB1488 /* XGMainAddressBookViewController.m in Sources */,
 				D646ECE8210B0A2500DB1488 /* XGLoginAddInfoViewController.m in Sources */,
 				D646EAFB210971B600DB1488 /* UIImage+Color.m in Sources */,
 				D646EB6021097CF000DB1488 /* NetTool.m in Sources */,
@@ -1610,6 +1657,7 @@
 				D646EC7A21099AE400DB1488 /* ChatKeyBoardView.m in Sources */,
 				D646EB5421097CF000DB1488 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				D646EC8121099AE400DB1488 /* EmojiConvertToString.m in Sources */,
+				D6831953212EC22600F3741D /* XGMainFindViewController.m in Sources */,
 				D646EB052109759600DB1488 /* MyTools.m in Sources */,
 				D646EC8C21099AE500DB1488 /* SMPageControl.m in Sources */,
 				D646EC9121099B3800DB1488 /* GTMBase64.m in Sources */,

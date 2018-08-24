@@ -9,8 +9,7 @@
 #import "XGLoginAddInfoViewController.h"
 #import <Photos/Photos.h>
 @interface XGLoginAddInfoViewController ()<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (nonatomic, strong) UIView *loginBackView;
-@property (nonatomic, strong) UILabel *loginTitleLabel;
+@property (nonatomic, strong) UIView *loginHeadView;
 @property (nonatomic, strong) UIImageView *loginHeadImageView;
 @property (nonatomic, strong) UIImageView *loginBackgroundView;
 @property (nonatomic, strong) UIView *loginNickNameView;
@@ -24,7 +23,6 @@
 @property (nonatomic, strong) UIView *loginSexView;
 @property (nonatomic, strong) UITextField *loginSexTextField;
 @property (nonatomic, strong) UIButton *loginBtn;
-@property (nonatomic, strong) UILabel *loginDesLabel;
 @property (nonatomic, strong) UILabel *sexDesLabel;
 @end
 
@@ -33,10 +31,8 @@
 #pragma mark - 生命周期及系统方法
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:self.loginBackView];
-    [self.view addSubview:self.loginTitleLabel];
-    [self.view addSubview:self.loginHeadImageView];
+    self.loginTitleLabel.text = @"注册";
+    [self.view addSubview:self.loginHeadView];
     [self.view addSubview:self.loginBackgroundView];
     [self.loginBackgroundView addSubview:self.loginNickNameView];
     [self.loginBackgroundView addSubview:self.loginBirthdayView];
@@ -45,30 +41,17 @@
     [self.loginBackgroundView addSubview:self.loginSexView];
     [self.loginBackgroundView addSubview:self.sexDesLabel];
     [self.loginBackgroundView addSubview:self.loginBtn];
-    [self.view addSubview:self.loginDesLabel];
     
-    self.loginBackView.sd_layout
-    .leftSpaceToView(self.view, 20)
-    .topSpaceToView(self.view, 50)
-    .widthIs(30)
-    .heightIs(30);
-    
-    self.loginTitleLabel.sd_layout
-    .centerYEqualToView(self.loginBackView)
-    .centerXEqualToView(self.view)
-    .widthIs(200)
-    .heightIs(50);
-    
-    self.loginHeadImageView.sd_layout
-    .widthIs(66)
-    .heightIs(66)
+    self.loginHeadView.sd_layout
+    .widthIs(80)
+    .heightIs(80)
     .topSpaceToView(self.view, 120)
     .centerXEqualToView(self.view);
     
     self.loginBackgroundView.sd_layout
     .leftSpaceToView(self.view, 30)
     .rightSpaceToView(self.view, 30)
-    .topSpaceToView(self.loginHeadImageView, -10)
+    .topSpaceToView(self.loginHeadView, -15)
     .heightIs(420);
     
     self.loginNickNameView.sd_layout
@@ -205,34 +188,25 @@
 }
 
 #pragma mark - 视图及控制器创建方法
-- (UIView *)loginBackView{
+- (UIView *)loginHeadView{
     
-    if (_loginBackView == nil){
+    if (_loginHeadView == nil){
         
-        _loginBackView = [[UIView alloc] init];
-        _loginBackView.backgroundColor = [UIColor redColor];
-        UITapGestureRecognizer *backTap = [[UITapGestureRecognizer alloc] init];
-        [_loginBackView addGestureRecognizer:backTap];
-        [backTap.rac_gestureSignal subscribeNext:^(id x) {
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-        }];
-    }
-    return _loginBackView;
-}
-
-- (UIImageView *)loginHeadImageView{
-    
-    if (_loginHeadImageView == nil){
+        _loginHeadView = [UIView new];
+        _loginHeadView.userInteractionEnabled = YES;
+        _loginHeadView.backgroundColor = [UIColor whiteColor];
+        _loginHeadView.layer.cornerRadius = 40.0;
+        _loginHeadView.layer.masksToBounds = YES;
         
-        _loginHeadImageView = [[UIImageView alloc] init];
-        _loginHeadImageView.userInteractionEnabled = YES;
-        _loginHeadImageView.backgroundColor = [UIColor redColor];
-        _loginHeadImageView.layer.cornerRadius = 33.0;
-        _loginHeadImageView.layer.masksToBounds = YES;
+        [_loginHeadView addSubview:self.loginHeadImageView];
+        self.loginHeadImageView.sd_layout
+        .centerXEqualToView(_loginHeadView)
+        .centerYEqualToView(_loginHeadView)
+        .widthIs(33)
+        .heightIs(31);
+        
         UITapGestureRecognizer *headImageTap = [[UITapGestureRecognizer alloc] init];
-        [_loginHeadImageView addGestureRecognizer:headImageTap];
+        [_loginHeadView addGestureRecognizer:headImageTap];
         [headImageTap.rac_gestureSignal subscribeNext:^(id x) {
             
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"设置头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -271,6 +245,15 @@
             
         }];
     }
+    return _loginHeadView;
+}
+
+- (UIImageView *)loginHeadImageView{
+    
+    if (!_loginHeadImageView) {
+        
+        _loginHeadImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Register_cameraIcon"]];
+    }
     return _loginHeadImageView;
 }
 
@@ -295,8 +278,8 @@
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         [path moveToPoint:CGPointMake(0, 0)];
-        [path addLineToPoint:CGPointMake(width/2 - 40, 0)];
-        [path addQuadCurveToPoint:CGPointMake(width/2 + 40, 0) controlPoint:CGPointMake(width/2, 35)];
+        [path addLineToPoint:CGPointMake(width/2 - 45, 0)];
+        [path addQuadCurveToPoint:CGPointMake(width/2 + 45, 0) controlPoint:CGPointMake(width/2, 50)];
         [path addLineToPoint:CGPointMake(width, 0)];
         [path addLineToPoint:CGPointMake(width, height)];
         [path addLineToPoint:CGPointMake(0, height)];
@@ -307,6 +290,8 @@
         layer.path = path.CGPath;
         layer.fillColor = [UIColor whiteColor].CGColor;
         layer.frame = _loginBackgroundView.bounds;
+        layer.cornerRadius = 6.0;
+        layer.masksToBounds = YES;
         [_loginBackgroundView.layer addSublayer:layer];
         
     }
@@ -355,20 +340,21 @@
         _loginNickNameTextField.borderStyle = UITextBorderStyleNone;
         _loginNickNameTextField.placeholder = @"请输入您的昵称";
         _loginNickNameTextField.delegate = self;
+        _loginNickNameTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginNickNameTextField;
 }
 
 - (UILabel *)desNameLabelWithText:(NSString *)text{
     
-    UILabel *label = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentLeft fontSize:16 textColor:[UIColor grayColor] string:text systemFont:NO];
+    UILabel *label = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentLeft fontSize:16 textColor:UIColorWithRGBA(115, 115, 115, 1) string:text systemFont:NO];
     return label;
 }
 
 - (UIView *)lineView{
     
     UIView *lineView = [UIView new];
-    lineView.backgroundColor = UIColorWithRGBA(150, 150, 150, 1);
+    lineView.backgroundColor = UIColorWithRGBA(127, 127, 127, 1);
     return lineView;
 }
 
@@ -412,6 +398,7 @@
         _loginBirthdayTextField.borderStyle = UITextBorderStyleNone;
         _loginBirthdayTextField.placeholder = @"请输入您的出生日期";
         _loginBirthdayTextField.delegate = self;
+        _loginBirthdayTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginBirthdayTextField;
 }
@@ -456,6 +443,7 @@
         _loginPasswordTextField.borderStyle = UITextBorderStyleNone;
         _loginPasswordTextField.placeholder = @"密码不少于6位";
         _loginPasswordTextField.delegate = self;
+        _loginPasswordTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginPasswordTextField;
 }
@@ -502,6 +490,7 @@
         _loginEmailTextField.borderStyle = UITextBorderStyleNone;
         _loginEmailTextField.placeholder = @"请填写您的邮箱";
         _loginEmailTextField.delegate = self;
+        _loginEmailTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginEmailTextField;
 }
@@ -548,6 +537,7 @@
         _loginSexTextField.borderStyle = UITextBorderStyleNone;
         _loginSexTextField.placeholder = @"请选择您的性别";
         _loginSexTextField.delegate = self;
+        _loginSexTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginSexTextField;
 }
@@ -559,7 +549,9 @@
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_loginBtn setTitle:@"完成" forState:UIControlStateNormal];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginBtn setBackgroundColor:[UIColor redColor]];
+        [_loginBtn setBackgroundColor:kBtnColor];
+        _loginBtn.layer.cornerRadius = 4.0;
+        _loginBtn.layer.masksToBounds = YES;
         [[_loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             
             [self checkCanLoginState:^(BOOL canLoginState) {
@@ -573,29 +565,11 @@
     return _loginBtn;
 }
 
-- (UILabel *)loginTitleLabel{
-    
-    if (_loginTitleLabel == nil){
-        
-        _loginTitleLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:18 textColor:[UIColor whiteColor] string:@"基本" systemFont:NO];
-    }
-    return _loginTitleLabel;
-}
-
-- (UILabel *)loginDesLabel{
-    
-    if (_loginDesLabel == nil){
-        
-        _loginDesLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:14 textColor:[UIColor grayColor] string:@"登录表示同意《*****服务》" systemFont:YES];
-    }
-    return _loginDesLabel;
-}
-
 - (UILabel *)sexDesLabel{
     
     if (_sexDesLabel == nil){
         
-        _sexDesLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentLeft fontSize:12 textColor:[UIColor redColor] string:@"注册成功后，性别不可修改" systemFont:YES];
+        _sexDesLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentLeft fontSize:12 textColor:kBtnColor string:@"注册成功后，性别不可修改" systemFont:YES];
     }
     return _sexDesLabel;
 }

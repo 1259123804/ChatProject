@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface XGLoginRegisterBaseViewController : UIViewController
-
+@property (nonatomic, strong) UIView *loginBackView;
+@property (nonatomic, strong) UILabel *loginTitleLabel;
+@property (nonatomic, strong) UILabel *loginDesLabel;
 @end

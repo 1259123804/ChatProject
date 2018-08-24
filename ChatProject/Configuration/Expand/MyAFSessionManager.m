@@ -87,7 +87,7 @@
     NSString *interval =  [NSString stringWithFormat:@"%.0f",[NSDate date].timeIntervalSince1970];
     NSString *longitude, *latitude = @"";
     NSMutableDictionary *signDic = [@{@"cv": app_Version, @"os": @"ios", @"timestamp": interval} mutableCopy];
-    NSString *token = DefaultsValueForKey(@"token");
+    NSString *token = DefaultsValueForKey(kUser_token);
     [signDic setValue:token ? token : @" " forKey:@"token"];
     [signDic setValue:@" " forKey:@"iid"];
     [signDic setValue:@" " forKey:@"i"];

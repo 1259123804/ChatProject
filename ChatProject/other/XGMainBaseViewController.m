@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setHidden:YES];
+    [self.view addSubview:self.navBarView];
     // Do any additional setup after loading the view.
 }
 
@@ -24,6 +26,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIView *)navBarView{
+    if (_navBarView == nil) {
+        
+        _navBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavBarHeight)];
+        _navBarView.backgroundColor = [UIColor whiteColor];
+        [_navBarView addSubview:self.navTitleLabel];
+    }
+    return _navBarView;
+}
+
+
+
+- (UILabel *)navTitleLabel{
+    
+    if (_navTitleLabel == nil){
+        
+        _navTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2 - 100, kNavBarHeight - 35, 200, 25)];
+        _navTitleLabel.textColor = UIColorWithRGBA(51, 51, 51, 1);
+        _navTitleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
+        _navTitleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _navTitleLabel;
+}
 /*
 #pragma mark - Navigation
 

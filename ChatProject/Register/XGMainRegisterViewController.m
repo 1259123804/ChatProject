@@ -9,8 +9,6 @@
 #import "XGMainRegisterViewController.h"
 #import "XGRegisterAddInfoViewController.h"
 @interface XGMainRegisterViewController ()<UITextFieldDelegate>
-@property (nonatomic, strong) UIView *loginBackView;
-@property (nonatomic, strong) UILabel *loginTitleLabel;
 @property (nonatomic, strong) UIImageView *loginBackgroundView;
 @property (nonatomic, strong) UIView *loginCountryCodeView;
 @property (nonatomic, strong) UILabel *loginCountryCodeLabel;
@@ -23,7 +21,6 @@
 @property (nonatomic, strong) UILabel *loginTimerLabel;
 @property (nonatomic, strong) NSTimer *loginTimer;
 @property (nonatomic, strong) UIButton *loginBtn;
-@property (nonatomic, strong) UILabel *loginDesLabel;
 @property (nonatomic, assign) NSInteger loginIdentifyTime;
 @property (nonatomic, strong) UIImageView *loginTopView;
 @end
@@ -33,41 +30,25 @@
 #pragma mark - 生命周期及系统方法
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:self.loginBackView];
     [self.view addSubview:self.loginTopView];
-    [self.view addSubview:self.loginTitleLabel];
     [self.view addSubview:self.loginBackgroundView];
     [self.loginBackgroundView addSubview:self.loginCountryCodeView];
     [self.loginBackgroundView addSubview:self.loginPhoneView];
     [self.loginBackgroundView addSubview:self.loginPasswordView];
     [self.loginBackgroundView addSubview:self.loginIdentifyView];
     [self.loginBackgroundView addSubview:self.loginBtn];
-    [self.view addSubview:self.loginDesLabel];
+    self.loginTitleLabel.text = @"注册";
     
     //TODO:测试数据
     self.loginPhoneTextField.text = @"13253595712";
     self.loginPasswordTextField.text = @"555555";
     self.loginIdentifyTextField.text = @"555555";
     
-    self.loginBackView.sd_layout
-    .leftSpaceToView(self.view, 20)
-    .topSpaceToView(self.view, 50)
-    .widthIs(30)
-    .heightIs(30);
-    
     self.loginTopView.sd_layout
-    .leftSpaceToView(self.view, 40)
+    .leftSpaceToView(self.view, 37.5 * kScreenWidth / 375)
     .topSpaceToView(self.loginBackView, 30)
-    .rightSpaceToView(self.view, 40)
-    .heightIs((kScreenWidth - 80) * 86/300);
-    
-    
-    self.loginTitleLabel.sd_layout
-    .centerYEqualToView(self.loginBackView)
-    .centerXEqualToView(self.view)
-    .widthIs(200)
-    .heightIs(50);
+    .rightSpaceToView(self.view, 37.5 * kScreenWidth / 375)
+    .heightIs((kScreenWidth - 75 * kScreenWidth/375) * 43 / 300);
     
     self.loginBackgroundView.sd_layout
     .leftSpaceToView(self.view, 30)
@@ -104,13 +85,7 @@
     .rightEqualToView(self.loginCountryCodeView)
     .topSpaceToView(self.loginIdentifyView, 30)
     .heightIs(40);
-    
-    self.loginDesLabel.sd_layout
-    .centerXEqualToView(self.view)
-    .bottomSpaceToView(self.view, 50)
-    .widthIs(kScreenWidth)
-    .heightIs(40);
-    
+
     // Do any additional setup after loading the view.
 }
 
@@ -203,22 +178,6 @@
 }
 
 #pragma mark - 视图及控制器创建方法
-- (UIView *)loginBackView{
-    
-    if (_loginBackView == nil){
-        
-        _loginBackView = [[UIView alloc] init];
-        _loginBackView.backgroundColor = [UIColor redColor];
-        UITapGestureRecognizer *backTap = [[UITapGestureRecognizer alloc] init];
-        [_loginBackView addGestureRecognizer:backTap];
-        [backTap.rac_gestureSignal subscribeNext:^(id x) {
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-        }];
-    }
-    return _loginBackView;
-}
 
 - (UIImageView *)loginBackgroundView{
     
@@ -242,6 +201,8 @@
         layer.path = path.CGPath;
         layer.fillColor = [UIColor whiteColor].CGColor;
         layer.frame = _loginBackgroundView.bounds;
+        layer.cornerRadius = 6.0;
+        layer.masksToBounds = YES;
         [_loginBackgroundView.layer addSublayer:layer];
         
     }
@@ -277,7 +238,7 @@
     
     if (_loginCountryCodeLabel == nil){
         
-        _loginCountryCodeLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentLeft fontSize:14 textColor:UIColorWithRGBA(159, 159, 159, 1) string:@"中国（+86）" systemFont:YES];
+        _loginCountryCodeLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentLeft fontSize:14 textColor:UIColorWithRGBA(157, 157, 157, 1) string:@"中国（+86）" systemFont:YES];
     }
     return _loginCountryCodeLabel;
 }
@@ -285,7 +246,7 @@
 - (UIView *)lineView{
     
     UIView *lineView = [UIView new];
-    lineView.backgroundColor = UIColorWithRGBA(150, 150, 150, 1);
+    lineView.backgroundColor = UIColorWithRGBA(127, 127, 127, 1);
     return lineView;
 }
 
@@ -321,6 +282,7 @@
         _loginPhoneTextField.borderStyle = UITextBorderStyleNone;
         _loginPhoneTextField.placeholder = @"请输入您的手机号码";
         _loginPhoneTextField.delegate = self;
+        _loginPhoneTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginPhoneTextField;
 }
@@ -357,6 +319,7 @@
         _loginPasswordTextField.borderStyle = UITextBorderStyleNone;
         _loginPasswordTextField.placeholder = @"密码不少于6位";
         _loginPasswordTextField.delegate = self;
+        _loginPasswordTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginPasswordTextField;
 }
@@ -396,8 +359,8 @@
     
     if (_loginTimerLabel == nil){
         
-        _loginTimerLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:12 textColor:UIColorWithRGBA(150, 150, 150, 1) string:@"获取" systemFont:YES];
-        _loginTimerLabel.layer.borderColor = UIColorWithRGBA(150, 150, 150, 1).CGColor;
+        _loginTimerLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:12 textColor:UIColorWithRGBA(115, 115, 115, 1) string:@"获取" systemFont:YES];
+        _loginTimerLabel.layer.borderColor = UIColorWithRGBA(102, 102, 102, 1).CGColor;
         _loginTimerLabel.layer.borderWidth = 1.0;
         _loginTimerLabel.layer.cornerRadius = 2.0;
         _loginTimerLabel.layer.masksToBounds = YES;
@@ -449,6 +412,7 @@
         _loginIdentifyTextField.borderStyle = UITextBorderStyleNone;
         _loginIdentifyTextField.placeholder = @"请输入验证码";
         _loginIdentifyTextField.delegate = self;
+        _loginIdentifyTextField.textColor = UIColorWithRGBA(157, 157, 157, 1);
     }
     return _loginIdentifyTextField;
 }
@@ -460,7 +424,9 @@
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_loginBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginBtn setBackgroundColor:[UIColor redColor]];
+        [_loginBtn setBackgroundColor:kBtnColor];
+        _loginBtn.layer.cornerRadius = 4.0;
+        _loginBtn.layer.masksToBounds = YES;
         [[_loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             
             [self checkCanLoginState:^(BOOL canLoginState) {
@@ -497,29 +463,11 @@
     return _loginBtn;
 }
 
-- (UILabel *)loginTitleLabel{
-    
-    if (_loginTitleLabel == nil){
-        
-        _loginTitleLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:18 textColor:[UIColor whiteColor] string:@"注册" systemFont:NO];
-    }
-    return _loginTitleLabel;
-}
-
-- (UILabel *)loginDesLabel{
-    
-    if (_loginDesLabel == nil){
-        
-        _loginDesLabel = [UILabel labelWithFrame:CGRectZero alignment:NSTextAlignmentCenter fontSize:14 textColor:[UIColor grayColor] string:@"注册表示同意《*****服务》" systemFont:YES];
-    }
-    return _loginDesLabel;
-}
-
 - (UIImageView *)loginTopView{
     
     if (_loginTopView == nil){
         
-        _loginTopView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register_process1"]];
+        _loginTopView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Register_first"]];
     }
     return _loginTopView;
 }

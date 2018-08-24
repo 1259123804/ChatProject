@@ -9,5 +9,4 @@
 #import "XGLoginRegisterBaseViewController.h"
 
 @interface XGReplacePasswordViewController : XGLoginRegisterBaseViewController
-
 @end

@@ -23,10 +23,12 @@
     XGMainTabbarViewController *tabbarController = [[XGMainTabbarViewController alloc] init];
     self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
-    [self.window.rootViewController presentViewController:self.loginViewController animated:YES completion:^{
-        
-        MyAlertView(@"请登录", nil);
-    }];
+    if (!DefaultsValueForKey(kUser_token)){
+        [self.window.rootViewController presentViewController:self.loginViewController animated:YES completion:^{
+            
+            MyAlertView(@"请登录", nil);
+        }];
+    }
     return YES;
 }
 

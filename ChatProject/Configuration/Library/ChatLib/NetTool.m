@@ -25,9 +25,9 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSString *tokenStr = DefaultsValueForKey(@"token");
+    NSString *tokenStr = DefaultsValueForKey(kUser_token);
     if (tokenStr) {
-        [manager.requestSerializer setValue:[@"Bearer "stringByAppendingString:tokenStr] forHTTPHeaderField:@"Authorization"];
+        [manager.requestSerializer setValue:tokenStr forHTTPHeaderField:@"token"];
     }
     [manager GET:url parameters:parameter progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -56,9 +56,9 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //wode
-    NSString *tokenStr = DefaultsObjectForKey(@"token");
+    NSString *tokenStr = DefaultsObjectForKey(kUser_token);
     if (tokenStr) {
-        [manager.requestSerializer setValue:[@"Bearer "stringByAppendingString:tokenStr] forHTTPHeaderField:@"Authorization"];
+        [manager.requestSerializer setValue:tokenStr forHTTPHeaderField:@"token"];
     }
 
 //    [manager GET:url parameters:parameter progress:^(NSProgress * _Nonnull downloadProgress) {
