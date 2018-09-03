@@ -23,12 +23,12 @@
 /*!
  测试消息的内容
  */
-//@property(nonatomic, strong) NSString *content;//bonday不用
+@property(nonatomic, strong) NSString *content;//bonday不用
 
 /*!
  测试消息的附加信息
  */
-//@property(nonatomic, strong) NSString *extra;//boday 不用
+@property(nonatomic, strong) NSString *extra;//boday 不用
 
 //bonday
 @property (nonatomic,strong) NSString *title;

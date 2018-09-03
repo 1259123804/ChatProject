@@ -75,7 +75,7 @@
 //              failure(error);
 //          }
 //      }];
-      [MyAFSessionManager requestWithURLString:baseURL parameters:params requestType:MyRequestTypeGet managerType:MyAFSessionManagerTypeWithToken success:^(id  _Nullable responseObject) {
+      [MyAFSessionManager requestWithURLString:url parameters:params requestType:MyRequestTypeGet managerType:MyAFSessionManagerTypeJsonWithToken success:^(id  _Nullable responseObject) {
           if (success) {
               success(responseObject);
           }
@@ -101,7 +101,7 @@
 //          }
 //      }];
       
-      [MyAFSessionManager requestWithURLString:baseURL parameters:params requestType:MyRequestTypePost managerType:MyAFSessionManagerTypeWithToken success:^(id  _Nullable responseObject) {
+      [MyAFSessionManager requestWithURLString:url parameters:params requestType:MyRequestTypePost managerType:MyAFSessionManagerTypeJsonWithToken success:^(id  _Nullable responseObject) {
           if (success) {
               success(responseObject);
           }
@@ -292,12 +292,8 @@
 + (void)findUserByPhone:(NSString *)Phone
                 success:(void (^)(id response))success
                 failure:(void (^)(NSError *err))failure {
-  [AFHttpTool
-      requestWihtMethod:RequestMethodTypeGet
-                    url:[NSString stringWithFormat:@"user/find/86/%@", Phone]
-                 params:nil
-                success:success
-                failure:failure];
+    NSDictionary *params = @{@"object_id": Phone};
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:[kTestApi stringByAppendingString:kFriends_search] params:params success:success failure:failure];
 }
 
 // get token

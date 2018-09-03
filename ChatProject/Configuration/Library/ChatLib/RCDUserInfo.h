@@ -15,6 +15,7 @@
 @property(nonatomic, strong) NSString *quanPin;
 /** email*/
 @property(nonatomic, strong) NSString *email;
+@property(nonatomic, assign) BOOL isFriend;
 /** 
  status: 与好友的关系。下面是好友关系的对照表，上面数据得到的status 值是20，表示和这个用户已经是好友了。
 	| 对自己的状态    |自己  | 好友 | 对好友的状态

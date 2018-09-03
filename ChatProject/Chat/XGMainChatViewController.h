@@ -11,4 +11,5 @@
 @interface XGMainChatViewController : XGMainBaseViewController
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIView *addImageView;
+@property (nonatomic, strong) NSDictionary *allFriendSectionDic;
 @end

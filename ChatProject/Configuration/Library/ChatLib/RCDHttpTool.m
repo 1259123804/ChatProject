@@ -560,15 +560,22 @@
   NSMutableArray *list = [NSMutableArray new];
   [AFHttpTool findUserByPhone:phone
       success:^(id response) {
-        if (userList && [response[@"code"] intValue] == 200) {
+        if (userList && [response[@"status"] intValue] == 0) {
           id result = response[@"result"];
           if ([result respondsToSelector:@selector(intValue)])
             return;
           if ([result respondsToSelector:@selector(objectForKey:)]) {
+              NSArray *searchList = result[@"searchlist"];
+              if (!searchList || searchList.count == 0) {
+                  
+                  return;
+              }
+              NSDictionary *userDic = searchList[0];
             RCDUserInfo *userInfo = [RCDUserInfo new];
-            userInfo.userId = [result objectForKey:@"id"];
-            userInfo.name = [result objectForKey:@"nickname"];
-            userInfo.portraitUri = [result objectForKey:@"portraitUri"];
+            userInfo.userId = [NSString stringWithFormat:@"%d", [[userDic objectForKey:@"id"] intValue]];
+            userInfo.name = [userDic objectForKey:@"name"];
+            userInfo.portraitUri = [userDic objectForKey:@"avatar"];
+              userInfo.isFriend = [userDic[@"is_friend"] boolValue];
             if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
               userInfo.portraitUri =
                   [RCDUtilities defaultUserPortrait:userInfo];

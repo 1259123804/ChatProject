@@ -65,6 +65,8 @@
 #import "XGMainDynamicViewController.h"
 #import "XGMainMyInfoViewController.h"
 #import "XGMainTabbarViewController.h"
+#import "DefaultPortraitView.h"
+#import "RCDCommonDefine.h"
 #endif
 
 #endif /* PrefixHeader_pch */
