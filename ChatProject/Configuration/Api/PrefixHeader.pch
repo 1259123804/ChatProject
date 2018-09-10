@@ -36,7 +36,6 @@
 //按照功能可选
 //#import <FMDB.h>
 //#import <CocoaAsyncSocket.h>
-#import "NetTool.h"
 //弹框显示（经过封装后的类库）
 #import "GXToast.h"
 //集成CocoaLumberjack

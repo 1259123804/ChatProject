@@ -43,8 +43,10 @@ target 'ChatProject' do
   #图片浏览器
 
   #融云
-  pod 'RongCloudIM/IMKit', '~> 2.8.3'
-  pod 'RongCloudIM/IMLib', '~> 2.8.3'
+  pod 'RongCloudIM/IMKit', '~> 2.9.0'
+  pod 'RongCloudIM/IMLib', '~> 2.9.0'
+  pod 'RongCloudRTC/RongCallLib', '2.9.0'
+  pod 'RongCloudRTC/RongCallKit', '2.9.0'
 
 
   #ping++

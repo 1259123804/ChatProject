@@ -1,18 +1,20 @@
 //
-//  XGChatAddFriendInfoViewController.m
-//  ChatProject
+//  RCDAddressBookViewController.m
+//  RongCloud
 //
-//  Created by Duke Li on 2018/9/3.
-//  Copyright © 2018年 Duke Li. All rights reserved.
+//  Created by Liv on 14/11/11.
+//  Copyright (c) 2014年 RongCloud. All rights reserved.
 //
 
-#import "XGChatAddFriendInfoViewController.h"
+#import "RCDAddressBookViewController.h"
 #import "DefaultPortraitView.h"
 #import "MBProgressHUD.h"
-#import "XGChatAddFriendInfoTableViewCell.h"
+#import "RCDAddressBookTableViewCell.h"
+#import "RCDChatViewController.h"
 #import "RCDCommonDefine.h"
 #import "RCDHttpTool.h"
 #import "RCDNoFriendView.h"
+#import "RCDPersonDetailViewController.h"
 #import "RCDRCIMDataSource.h"
 #import "RCDUserInfo.h"
 #import "RCDataBaseManager.h"
@@ -20,14 +22,13 @@
 #import "UIImageView+WebCache.h"
 #import <RongIMLib/RongIMLib.h>
 #include <ctype.h>
-#import "RCDChatViewController.h"
-#import "RCDAddressBookTableViewCell.h"
 
-@interface XGChatAddFriendInfoViewController(){
+@interface RCDAddressBookViewController () {
     NSInteger tag;
     BOOL isSyncFriends;
     MBProgressHUD *hud;
 }
+
 //#字符索引对应的user object
 @property(nonatomic, strong) NSMutableArray *tempOtherArr;
 @property(nonatomic, strong) NSMutableArray *friends;
@@ -36,7 +37,7 @@
 
 @end
 
-@implementation XGChatAddFriendInfoViewController
+@implementation RCDAddressBookViewController
 
 
 + (instancetype)addressBookViewController {
@@ -57,11 +58,11 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"新朋友";
-    
+
     self.tableView.tableFooterView = [UIView new];
-    
+
     _friendsDic = [[NSMutableDictionary alloc] init];
-    
+
     tag = 0;
     isSyncFriends = NO;
 }
@@ -75,7 +76,7 @@
 //删除已选中用户
 - (void)removeSelectedUsers:(NSArray *)selectedUsers {
     for (RCUserInfo *user in selectedUsers) {
-        
+
         [_friends enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             RCDUserInfo *userInfo = obj;
             if ([user.userId isEqualToString:userInfo.userId]) {
@@ -125,15 +126,15 @@
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    XGChatAddFriendInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(XGChatAddFriendInfoTableViewCell.class)];
+    static NSString *reusableCellWithIdentifier = @"RCDAddressBookCell";
+    RCDAddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reusableCellWithIdentifier];
     if (!cell) {
-        cell = [[XGChatAddFriendInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(XGChatAddFriendInfoTableViewCell.class)];
+        cell = [[RCDAddressBookTableViewCell alloc] init];
     }
     cell.tag = tag + 5000;
     cell.acceptBtn.tag = tag + 10000;
     tag++;
-    
+
     RCDUserInfo *user = _friends[indexPath.row];
     [_friendsDic setObject:user forKey:[NSString stringWithFormat:@"%ld", (long)cell.tag]];
     [cell setModel:user];
@@ -150,8 +151,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return [XGChatAddFriendInfoTableViewCell cellHeight];
+    return [RCDAddressBookTableViewCell cellHeight];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -163,7 +163,7 @@
     userInfo.userId = user.userId;
     userInfo.portraitUri = user.portraitUri;
     userInfo.name = user.name;
-    
+
     RCDChatViewController *chatViewController = [[RCDChatViewController alloc] init];
     chatViewController.conversationType = ConversationType_PRIVATE;
     chatViewController.targetId = userInfo.userId;
@@ -181,14 +181,14 @@
     NSInteger tempTag = sender.tag;
     tempTag -= 5000;
     RCDAddressBookTableViewCell *cell = (RCDAddressBookTableViewCell *)[self.view viewWithTag:tempTag];
-    
+
     RCDUserInfo *friend = [_friendsDic objectForKey:[NSString stringWithFormat:@"%ld", (long)tempTag]];
-    
+
     [RCDHTTPTOOL processInviteFriendRequest:friend.userId
                                    complete:^(BOOL request) {
                                        if (request) {
                                            [RCDHTTPTOOL getFriendscomplete:^(NSMutableArray *result) {
-                                               
+
                                                dispatch_async(dispatch_get_main_queue(), ^{
                                                    cell.acceptBtn.hidden = YES;
                                                    cell.arrow.hidden = NO;
@@ -199,7 +199,7 @@
                                                });
                                            }];
                                            [RCDHTTPTOOL getFriendscomplete:^(NSMutableArray *result){
-                                               
+
                                            }];
                                        } else {
                                            dispatch_async(dispatch_get_main_queue(), ^{
@@ -278,9 +278,8 @@
             }
         }
     }
-    
+
     return result;
 }
-
 
 @end

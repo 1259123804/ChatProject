@@ -54,7 +54,8 @@
 
 - (UISearchBar *)searchFriendsBar {
     if (!_searchFriendsBar) {
-        _searchFriendsBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 0, RCDscreenWidth - 4, 28)];
+        _searchFriendsBar = [[UISearchBar alloc] initWithFrame:CGRectMake(12, kNavBarHeight + 5, RCDscreenWidth - 28, 28)];
+        _searchBar.placeholder = @"搜索";
         [_searchFriendsBar sizeToFit];
         [_searchFriendsBar setPlaceholder:NSLocalizedStringFromTable(@"ToSearch", @"RongCloudKit", nil)];
         [_searchFriendsBar.layer setBorderWidth:0.5];
@@ -71,7 +72,7 @@
         CGRect searchBarFrame = self.searchFriendsBar.frame;
         CGFloat originY = CGRectGetMaxY(searchBarFrame);
         _friendsTabelView = [[RCDTableView alloc]
-                             initWithFrame:CGRectMake(0, originY, self.view.bounds.size.width, self.view.bounds.size.height - searchBarFrame.size.height)
+                             initWithFrame:CGRectMake(0, originY, self.view.bounds.size.width, self.view.bounds.size.height - originY)
                              style:UITableViewStyleGrouped];
         
         _friendsTabelView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -113,8 +114,7 @@
     self.friendsTabelView.backgroundColor = HEXCOLOR(0xf0f0f6);
     self.friendsTabelView.separatorColor = HEXCOLOR(0xdfdfdf);
     
-    self.friendsTabelView.tableHeaderView =
-    [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.friendsTabelView.bounds.size.width, 0.01f)];
+    self.friendsTabelView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.friendsTabelView.bounds.size.width, 0.01f)];
     
     //设置右侧索引
     self.friendsTabelView.sectionIndexBackgroundColor = [UIColor clearColor];
@@ -140,8 +140,8 @@
     searchField.layer.cornerRadius = 5.f;
     self.searchFriendsBar.placeholder = @"搜索";
     
-    self.defaultCellsTitle = [NSArray arrayWithObjects:@"新朋友", @"群组", @"公众号", nil];
-    self.defaultCellsPortrait = [NSArray arrayWithObjects:@"newFriend", @"defaultGroup", @"publicNumber", nil];
+    self.defaultCellsTitle = [NSArray arrayWithObjects:@"互动提醒", @"系统消息", @"陌生人消息", @"好友定制",@"通讯录好友", nil];
+    self.defaultCellsPortrait = [NSArray arrayWithObjects:@"ChatList_interaction", @"ChatList_systemInfo", @"ChatList_strangerInfo", @"ChatList_suitInfo", @"ChatList_addressbookInfo",nil];
     
     self.isBeginSearch = NO;
     
@@ -196,7 +196,7 @@
         if (_isBeginSearch == YES) {
             rows = 0;
         } else {
-            rows = 4;
+            rows = self.defaultCellsTitle.count;
         }
     } else {
         NSString *letter = self.resultDic[@"allKeys"][section - 1];
@@ -252,7 +252,7 @@
         cell = [[RCDContactTableViewCell alloc] init];
     }
     
-    if (indexPath.section == 0 && indexPath.row < 3) {
+    if (indexPath.section == 0 && indexPath.row < self.defaultCellsTitle.count) {
         if ([RCDForwardMananer shareInstance].isForward && indexPath.section == 0 && indexPath.row == 0) {
             
         }else{
@@ -262,14 +262,14 @@
                                                                              objectAtIndex:indexPath.row]]]];
         }
     }
-    if (indexPath.section == 0 && indexPath.row == 3) {
-        if (isDisplayID == YES) {
-            cell.userIdLabel.text = [RCIM sharedRCIM].currentUserInfo.userId;
-        }
-        cell.nicknameLabel.text = [RCIM sharedRCIM].currentUserInfo.name;
-        [cell.portraitView sd_setImageWithURL:[NSURL URLWithString:[RCIM sharedRCIM].currentUserInfo.portraitUri]
-                             placeholderImage:[UIImage imageNamed:@"contact"]];
-    }
+//    if (indexPath.section == 0 && indexPath.row == 3) {
+//        if (isDisplayID == YES) {
+//            cell.userIdLabel.text = [RCIM sharedRCIM].currentUserInfo.userId;
+//        }
+//        cell.nicknameLabel.text = [RCIM sharedRCIM].currentUserInfo.name;
+//        [cell.portraitView sd_setImageWithURL:[NSURL URLWithString:[RCIM sharedRCIM].currentUserInfo.portraitUri]
+//                             placeholderImage:[UIImage imageNamed:@"contact"]];
+//    }
     if (indexPath.section != 0) {
         NSString *letter = self.resultDic[@"allKeys"][indexPath.section - 1];
         
@@ -329,7 +329,7 @@
             } break;
                 
             case 1: {
-               
+                
                 return;
                 
             } break;

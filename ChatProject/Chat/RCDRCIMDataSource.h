@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RongCallKit/RongCallKit.h>
 #import <RongContactCard/RongContactCard.h>
 #import <RongIMKit/RongIMKit.h>
 
@@ -18,8 +17,7 @@
  *  用户信息和群组信息都要通过回传id请求服务器获取，参考具体实现代码。
  */
 @interface RCDRCIMDataSource
-    : NSObject <RCIMUserInfoDataSource, RCIMGroupInfoDataSource, RCIMGroupUserInfoDataSource,
-                RCCallGroupMemberDataSource, RCIMGroupMemberDataSource, RCCCContactsDataSource, RCCCGroupDataSource>
+    : NSObject <RCIMUserInfoDataSource, RCIMGroupInfoDataSource, RCIMGroupUserInfoDataSource, RCIMGroupMemberDataSource, RCCCContactsDataSource, RCCCGroupDataSource>
 
 + (RCDRCIMDataSource *)shareInstance;
 

@@ -16,7 +16,6 @@
 #import "RCDataBaseManager.h"
 #import "UIColor+RCColor.h"
 #import "UIImageView+WebCache.h"
-#import <RongCallKit/RongCallKit.h>
 #import <RongIMKit/RongIMKit.h>
 #import <RongIMLib/RCUserInfo.h>
 #import "RCDUIBarButtonItem.h"
@@ -203,12 +202,12 @@
 
 - (void)btnVoIP:(id)sender {
     //语音通话
-    [[RCCall sharedRCCall] startSingleCall:self.friendInfo.userId mediaType:RCCallMediaAudio];
+    //[[RCCall sharedRCCall] startSingleCall:self.friendInfo.userId mediaType:RCCallMediaAudio];
 }
 
 - (void)btnVideoCall:(id)sender {
     //视频通话
-    [[RCCall sharedRCCall] startSingleCall:self.friendInfo.userId mediaType:RCCallMediaVideo];
+    //[[RCCall sharedRCCall] startSingleCall:self.friendInfo.userId mediaType:RCCallMediaVideo];
 }
 
 - (void)rightBarButtonItemClicked:(id)sender {
@@ -324,17 +323,17 @@
 }
 
 - (void)setLayoutForFriend {
-    if ([[RCCallClient sharedRCCallClient] isAudioCallEnabled:ConversationType_PRIVATE]) {
-        self.audioCallBtn.hidden = NO;
-    } else {
-        self.audioCallBtn.hidden = YES;
-    }
+//    if ([[RCCallClient sharedRCCallClient] isAudioCallEnabled:ConversationType_PRIVATE]) {
+//        self.audioCallBtn.hidden = NO;
+//    } else {
+//        self.audioCallBtn.hidden = YES;
+//    }
 
-    if ([[RCCallClient sharedRCCallClient] isVideoCallEnabled:ConversationType_PRIVATE]) {
-        self.videoCallBtn.hidden = NO;
-    } else {
-        self.videoCallBtn.hidden = YES;
-    }
+//    if ([[RCCallClient sharedRCCallClient] isVideoCallEnabled:ConversationType_PRIVATE]) {
+//        self.videoCallBtn.hidden = NO;
+//    } else {
+//        self.videoCallBtn.hidden = YES;
+//    }
 
     UIView *remarksView = [[UIView alloc] init];
     remarksView.translatesAutoresizingMaskIntoConstraints = NO;

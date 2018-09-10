@@ -8,7 +8,6 @@
 
 #import "RCDChatViewController.h"
 #import "RCDAddFriendViewController.h"
-#import "RCDChatViewController.h"
 #import "RCDContactSelectedTableViewController.h"
 #import "RCDCustomerEmoticonTab.h"
 #import "RCDDiscussGroupSettingViewController.h"
@@ -32,22 +31,22 @@
 #import "RCDContactViewController.h"
 #import "RCDForwardAlertView.h"
 
-@interface RCDChatViewController () <UIActionSheetDelegate, RCRealTimeLocationObserver,
-                                     RealTimeLocationStatusViewDelegate, UIAlertViewDelegate, RCMessageCellDelegate>
+@interface RCDChatViewController () <UIActionSheetDelegate, RCRealTimeLocationObserver,RealTimeLocationStatusViewDelegate, UIAlertViewDelegate, RCMessageCellDelegate>{
+    
+    NSMutableDictionary *userInputStatus;
+}
 @property(nonatomic, weak) id<RCRealTimeLocationProxy> realTimeLocation;
 @property(nonatomic, strong) RealTimeLocationStatusView *realTimeLocationStatusView;
 @property(nonatomic, strong) RCDGroupInfo *groupInfo;
 
 @property(nonatomic, strong) RCUserInfo *cardInfo;
 
-- (UIView *)loadEmoticonView:(NSString *)identify index:(int)index;
-
 @property(nonatomic) BOOL isLoading;
 
 @property(nonatomic, strong) RCDUIBarButtonItem *rightBtn;
 @end
 
-NSMutableDictionary *userInputStatus;
+
 
 @implementation RCDChatViewController
 - (void)viewWillAppear:(BOOL)animated {
