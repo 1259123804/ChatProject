@@ -16,21 +16,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setHidden:YES];
+    //[self.navigationController.navigationBar setHidden:YES];
     [self.view addSubview:self.navBarView];
     // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)didReceiveMemoryWarning {

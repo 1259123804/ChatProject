@@ -167,4 +167,33 @@
     resultBlock(groupInfo);
 }
 
+- (NSArray *)getAddFriendsList:(void (^)(void))completion{
+    
+    NSString *url = [kTestApi stringByAppendingString:kFriends_applylist];
+    NSMutableArray *dataArray = [NSMutableArray array];
+    [MyAFSessionManager requestWithURLString:url parameters:nil requestType:MyRequestTypeGet managerType:MyAFSessionManagerTypeJsonWithToken success:^(id  _Nullable response) {
+        
+        if ([response[@"status"] intValue] == 0) {
+            NSArray *listArr = response[@"result"][@"apply_list"];
+            for (NSDictionary *dic in listArr) {
+                
+                RCUserInfo *user = [RCUserInfo new];
+                user.userId = dic[@"id"];
+                user.name = [dic objectForKey:@"name"];
+                user.portraitUri = [dic objectForKey:@"avatar"];
+                if (!user.portraitUri || user.portraitUri.length <= 0) {
+                    user.portraitUri = [RCDUtilities defaultUserPortrait:user];
+                }
+                [[RCDataBaseManager shareInstance] insertUserToDB:user];
+                [dataArray addObject:user];
+            }
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+       
+        MyAlertView(@"网络错误", nil);
+    }];
+    return dataArray;
+}
+
 @end

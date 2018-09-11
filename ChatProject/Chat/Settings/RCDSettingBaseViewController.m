@@ -23,7 +23,7 @@
     //设置switch状态
     [self setSwitchState];
 
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = NSLocalizedStringFromTable(@"Setting", @"RongCloudKit", nil); //@"设置";
     
     RCDUIBarButtonItem *leftButton = [[RCDUIBarButtonItem alloc] initWithLeftBarButton:@"返回" target:self                    action:@selector(backBarButtonItemClicked:)];

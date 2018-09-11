@@ -48,4 +48,10 @@
  */
 - (NSArray *)getAllFriends:(void (^)(void))completion;
 
+/*
+ *获取好友请求列表
+ */
+
+- (NSArray *)getAddFriendsList:(void(^)(void))completion;
+
 @end

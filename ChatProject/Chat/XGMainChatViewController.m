@@ -323,13 +323,13 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0: {
-                RCDAddressBookViewController *addressBookVC = [RCDAddressBookViewController addressBookViewController];
-                [self.navigationController pushViewController:addressBookVC animated:YES];
+                
                 return;
             } break;
                 
             case 1: {
-                
+                RCDAddressBookViewController *addressBookVC = [RCDAddressBookViewController addressBookViewController];
+                [MyTools pushViewControllerFrom:self To:addressBookVC animated:YES];
                 return;
                 
             } break;

@@ -82,7 +82,7 @@ MBProgressHUD *hud;
     [super viewDidLoad];
 
     self.navigationItem.title = _titleStr;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     self.isDeleteUser = NO;
 

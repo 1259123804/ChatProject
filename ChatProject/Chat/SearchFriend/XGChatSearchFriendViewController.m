@@ -59,7 +59,7 @@ UISearchDisplayDelegate, UISearchControllerDelegate>
     [self.searchDisplayController setSearchResultsDelegate:self];
     
     self.navigationItem.title = @"添加好友";
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+   // self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     // initial data
     _searchResult = [[NSMutableArray alloc] init];

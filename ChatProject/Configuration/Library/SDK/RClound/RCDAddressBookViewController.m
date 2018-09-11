@@ -70,7 +70,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _needSyncFriendList = YES;
-    [self getAllData];
+    [self getApplyData];
 }
 
 //删除已选中用户
@@ -80,7 +80,7 @@
         [_friends enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             RCDUserInfo *userInfo = obj;
             if ([user.userId isEqualToString:userInfo.userId]) {
-                [_friends removeObject:obj];
+                [self.friends removeObject:obj];
             }
         }];
     }
@@ -89,6 +89,23 @@
 /**
  *  initial data
  */
+
+- (void)getApplyData{
+    
+    _friends = [NSMutableArray arrayWithArray:[RCDDataSource getAddFriendsList:^{
+        
+        isSyncFriends = YES;
+        if (self.friends.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.noFriendView != nil) {
+                    [self.noFriendView removeFromSuperview];
+                }
+            });
+            [self getAllData];
+        }
+    }]];
+}
+
 - (void)getAllData {
     _friends = [NSMutableArray arrayWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
     if (_friends.count > 0) {
