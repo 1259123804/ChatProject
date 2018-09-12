@@ -505,11 +505,8 @@
 
 + (void)getFriendListFromServerSuccess:(void (^)(id))success failure:(void (^)(NSError *))failure {
     //获取除自己之外的好友信息
-    [AFHttpTool requestWihtMethod:RequestMethodTypeGet
-                              url:[NSString stringWithFormat:@"friendship/all"]
-                           params:nil
-                          success:success
-                          failure:failure];
+    //[AFHttpTool requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"friendship/all"] params:nil success:success failure:failure];
+    [MyAFSessionManager requestWithURLString:[kTestApi stringByAppendingString:kFriends_list] parameters:nil requestType:MyRequestTypePost managerType:MyAFSessionManagerTypeJsonWithToken success:success failure:failure];
 }
 
 + (void)processInviteFriendRequest:(NSString *)friendUserId
@@ -524,12 +521,9 @@
 + (void)processInviteFriendRequest:(NSString *)friendUserId
                            success:(void (^)(id))success
                            failure:(void (^)(NSError *))failure {
-    NSDictionary *params = @{@"friendId" : friendUserId};
-    [AFHttpTool requestWihtMethod:RequestMethodTypePost
-                              url:@"friendship/agree"
-                           params:params
-                          success:success
-                          failure:failure];
+    NSDictionary *params = @{@"apply_id" : friendUserId, @"status": @(1)};
+    [MyAFSessionManager requestWithURLString:[kTestApi stringByAppendingString:kFriends_accept] parameters:params requestType:MyRequestTypePost managerType:MyAFSessionManagerTypeJsonWithToken success:success failure:failure];
+    //[AFHttpTool requestWihtMethod:RequestMethodTypePost url:[kTestApi stringByAppendingString:kFriends_accept] params:params success:success failure:failure];
 }
 
 //加入黑名单

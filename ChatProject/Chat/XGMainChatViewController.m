@@ -36,8 +36,9 @@
 @property(nonatomic, assign) BOOL hasSyncFriendList;
 @property(nonatomic, assign) BOOL isBeginSearch;
 @property (nonatomic, strong) UISearchBar *searchFriendsBar;
-@property(nonatomic, strong) NSMutableDictionary *resultDic;
+//@property(nonatomic, strong) NSMutableDictionary *resultDic;
 @property (nonatomic, strong) RCDTableView *friendsTabelView;
+@property (nonatomic, strong) NSMutableArray *friendsListArray;
 @end
 
 @implementation XGMainChatViewController
@@ -100,6 +101,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.friendsListArray = [NSMutableArray array];
     [self.navBarView addSubview:self.addImageView];
     [self.navBarView addSubview:self.headerImageView];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -199,14 +201,17 @@
             rows = self.defaultCellsTitle.count;
         }
     } else {
-        NSString *letter = self.resultDic[@"allKeys"][section - 1];
-        rows = [self.allFriendSectionDic[letter] count];
+        
+        //NSString *letter = self.resultDic[@"allKeys"][section - 1];
+        //rows = [self.allFriendSectionDic[letter] count];
+        rows = self.friendsListArray.count;
     }
     return rows;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.resultDic[@"allKeys"] count] + 1;
+    //return [self.resultDic[@"allKeys"] count] + 1;
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -237,7 +242,7 @@
     if (section == 0) {
         title.text = nil;
     } else {
-        title.text = self.resultDic[@"allKeys"][section - 1];
+        //title.text = self.resultDic[@"allKeys"][section - 1];
     }
     
     return view;
@@ -271,10 +276,11 @@
 //                             placeholderImage:[UIImage imageNamed:@"contact"]];
 //    }
     if (indexPath.section != 0) {
-        NSString *letter = self.resultDic[@"allKeys"][indexPath.section - 1];
+        //NSString *letter = self.resultDic[@"allKeys"][indexPath.section - 1];
         
-        NSArray *sectionUserInfoList = self.allFriendSectionDic[letter];
-        RCDUserInfo *userInfo = sectionUserInfoList[indexPath.row];
+        //NSArray *sectionUserInfoList = self.allFriendSectionDic[letter];
+        //RCDUserInfo *userInfo = sectionUserInfoList[indexPath.row];
+        RCDUserInfo *userInfo = self.friendsListArray[indexPath.row];
         if (userInfo) {
             if (isDisplayID == YES) {
                 cell.userIdLabel.text = userInfo.userId;
@@ -314,7 +320,8 @@
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return self.resultDic[@"allKeys"];
+    return nil;
+   // return self.resultDic[@"allKeys"];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -351,7 +358,7 @@
                 }
                 
                 RCDPersonDetailViewController *detailViewController = [[RCDPersonDetailViewController alloc] init];
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                [MyTools pushViewControllerFrom:self To:detailViewController animated:YES];
                 detailViewController.userId = [RCIM sharedRCIM].currentUserInfo.userId;
                 return;
             }
@@ -360,12 +367,12 @@
                 break;
         }
     }
-    NSString *letter = self.resultDic[@"allKeys"][indexPath.section - 1];
-    NSArray *sectionUserInfoList = self.allFriendSectionDic[letter];
-    user = sectionUserInfoList[indexPath.row];
-    if (user == nil) {
-        return;
-    }
+//    NSString *letter = self.resultDic[@"allKeys"][indexPath.section - 1];
+//    NSArray *sectionUserInfoList = self.allFriendSectionDic[letter];
+//    user = sectionUserInfoList[indexPath.row];
+//    if (user == nil) {
+//        return;
+//    }
     if ([RCDForwardMananer shareInstance].isForward) {
         RCConversation *conver = [[RCConversation alloc] init];
         conver.targetId = user.userId;
@@ -441,30 +448,31 @@
 
 - (NSArray *)getAllFriendList {
     NSMutableArray *friendList = [[NSMutableArray alloc] init];
-    NSMutableArray *userInfoList = [NSMutableArray arrayWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
+    //NSMutableArray *userInfoList = [NSMutableArray arrayWithArray:.[[RCDataBaseManager shareInstance] getAllFriends]];
+    NSMutableArray *userInfoList = [NSMutableArray array];
     for (RCDUserInfo *user in userInfoList) {
-        if ([user.status isEqualToString:@"20"]) {
+        if ([user.status isEqualToString:@"1"]) {
             [friendList addObject:user];
         }
     }
     if (friendList.count <= 0 && !self.hasSyncFriendList) {
-        [RCDDataSource syncFriendList:[RCIM sharedRCIM].currentUserInfo.userId
-                             complete:^(NSMutableArray *result) {
-                                 self.hasSyncFriendList = YES;
-                                 [self sortAndRefreshWithList:[self getAllFriendList]];
-                             }];
+        [RCDDataSource syncFriendList:[RCIM sharedRCIM].currentUserInfo.userId complete:^(NSMutableArray *result) {
+            self.hasSyncFriendList = YES;
+            [self sortAndRefreshWithList:result];
+            //[self sortAndRefreshWithList:[self getAllFriendList]];
+        }];
     }
     //如有好友备注，则显示备注
     NSArray *resultList = [[RCDUserInfoManager shareInstance] getFriendInfoList:friendList];
-    
     return resultList;
 }
 
 - (void)sortAndRefreshWithList:(NSArray *)friendList {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        self.resultDic = [RCDUtilities sortedArrayWithPinYinDic:friendList];
+        //self.resultDic = [RCDUtilities sortedArrayWithPinYinDic:friendList];
+        self.friendsListArray = [NSMutableArray arrayWithArray:friendList];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.allFriendSectionDic = self.resultDic[@"infoDic"];
+            //self.allFriendSectionDic = self.resultDic[@"infoDic"];
             [self.friendsTabelView reloadData];
         });
     });

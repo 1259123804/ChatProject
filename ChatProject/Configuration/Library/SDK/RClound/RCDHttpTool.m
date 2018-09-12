@@ -417,36 +417,36 @@
             friendList(nil);
             return;
         }
-        NSString *code = [NSString stringWithFormat:@"%@", response[@"code"]];
+        NSString *code = [NSString stringWithFormat:@"%@", response[@"status"]];
         if (friendList) {
-            if ([code isEqualToString:@"200"]) {
+            if ([code isEqualToString:@"0"]) {
                 [_allFriends removeAllObjects];
                 NSArray *regDataArray = response[@"result"];
                 [[RCDataBaseManager shareInstance] clearFriendsData];
                 NSMutableArray *userInfoList = [NSMutableArray new];
                 NSMutableArray *friendInfoList = [NSMutableArray new];
                 for (int i = 0; i < regDataArray.count; i++) {
-                    NSDictionary *dic = [regDataArray objectAtIndex:i];
-
-                    NSDictionary *userDic = dic[@"user"];
-                    if ([userDic isKindOfClass:[NSDictionary class]] &&
-                        ![userDic[@"id"] isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
+                    
+                    NSDictionary *userDic = [regDataArray objectAtIndex:i];
+                    if ([userDic isKindOfClass:[NSDictionary class]] ) {
                         RCDUserInfo *userInfo = [RCDUserInfo new];
-                        userInfo.userId = userDic[@"id"];
-                        userInfo.name = userDic[@"nickname"];
-                        userInfo.portraitUri = userDic[@"portraitUri"];
-                        userInfo.displayName = dic[@"displayName"];
+                        userInfo.userId = [NSString stringWithFormat:@"%d", [userDic[@"id"] intValue]];
+                        userInfo.name = userDic[@"name"];
+                        userInfo.portraitUri = userDic[@"avatar"];
+                        userInfo.displayName = userDic[@"name"];
                         if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
                             userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
                         }
-                        userInfo.status = [NSString stringWithFormat:@"%@", [dic objectForKey:@"status"]];
-                        userInfo.updatedAt = [NSString stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
+                        //userInfo.status = [NSString stringWithFormat:@"%@", [dic objectForKey:@"status"]];
+                        //userInfo.updatedAt = [NSString stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
+                        userInfo.isFriend = YES;
+                        userInfo.status = [NSString stringWithFormat:@"%d", userInfo.isFriend];
                         [list addObject:userInfo];
-                        [_allFriends addObject:userInfo];
+                        [self.allFriends addObject:userInfo];
 
                         RCUserInfo *user = [RCUserInfo new];
-                        user.userId = userDic[@"id"];
-                        user.name = userDic[@"nickname"];
+                        user.userId = [NSString stringWithFormat:@"%d", [userDic[@"id"] intValue]];
+                        user.name = userDic[@"name"];
                         user.portraitUri = userDic[@"portraitUri"];
                         if (!user.portraitUri || user.portraitUri <= 0) {
                             user.portraitUri = [RCDUtilities defaultUserPortrait:user];
@@ -455,36 +455,34 @@
                         [friendInfoList addObject:userInfo];
                     }
                 }
-                [[RCDataBaseManager shareInstance] insertUserListToDB:userInfoList
-                                                             complete:^(BOOL result){
+                [[RCDataBaseManager shareInstance] insertUserListToDB:userInfoList complete:^(BOOL result){
 
-                                                             }];
-                [[RCDataBaseManager shareInstance]
-                    insertFriendListToDB:friendInfoList
-                                complete:^(BOOL result) {
-                                    if (result == YES) {
-                                        dispatch_async(dispatch_get_main_queue(), ^(void) {
-                                            friendList(list);
-                                        });
-                                    }
-                                }];
+                    
+                }];
+                [[RCDataBaseManager shareInstance] insertFriendListToDB:friendInfoList complete:^(BOOL result) {
+                    if (result == YES) {
+                        dispatch_async(dispatch_get_main_queue(), ^(void) {
+                            friendList(list);
+                        });
+                    }
+                }];
             } else {
+                
                 friendList(list);
             }
         }
-    }
-        failure:^(id response) {
-            if (friendList) {
-                NSMutableArray *cacheList =
-                    [[NSMutableArray alloc] initWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
-                for (RCDUserInfo *userInfo in cacheList) {
-                    if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
-                        userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
-                    }
+    }failure:^(id response) {
+        if (friendList) {
+            NSMutableArray *cacheList =
+            [[NSMutableArray alloc] initWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
+            for (RCDUserInfo *userInfo in cacheList) {
+                if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
+                    userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
                 }
-                friendList(cacheList);
             }
-        }];
+            friendList(cacheList);
+        }
+    }];
 }
 
 - (void)searchUserByPhone:(NSString *)phone complete:(void (^)(NSMutableArray *))userList {
@@ -536,21 +534,23 @@
 }
 
 - (void)processInviteFriendRequest:(NSString *)userId complete:(void (^)(BOOL))result {
-    [AFHttpTool processInviteFriendRequest:userId
-        success:^(id response) {
-            if (result && [response[@"code"] intValue] == 200) {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    result(YES);
-                });
-            } else if (result) {
-                result(NO);
-            }
+    [AFHttpTool processInviteFriendRequest:userId success:^(id response) {
+        
+        if (result && [response[@"status"] intValue] == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                
+                result(YES);
+            });
+        } else if (result) {
+            
+            result(NO);
         }
-        failure:^(id response) {
-            if (result) {
-                result(NO);
-            }
-        }];
+    }failure:^(id response) {
+        if (result) {
+            
+            result(NO);
+        }
+    }];
 }
 
 - (void)AddToBlacklist:(NSString *)userId complete:(void (^)(BOOL result))result {

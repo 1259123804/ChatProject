@@ -42,10 +42,10 @@
     self.loginTitleLabel.text = @"注册";
     
     //TODO:测试数据
-    self.loginNickNameTextField.text = @"李";
-    self.loginBirthdayTextField.text = @"555555";
-    self.loginEmailTextField.text = @"1259123804@qq.com";
-    self.loginSexTextField.text = @"男";
+//    self.loginNickNameTextField.text = @"李";
+//    self.loginBirthdayTextField.text = @"555555";
+//    self.loginEmailTextField.text = @"1259123804@qq.com";
+//    self.loginSexTextField.text = @"男";
     
     self.loginTopView.sd_layout
     .leftSpaceToView(self.view, 37.5 * kScreenWidth / 375)

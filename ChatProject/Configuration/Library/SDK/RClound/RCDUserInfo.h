@@ -29,7 +29,20 @@
 @property(nonatomic, strong) NSString *updatedAt;
 
 @property(nonatomic, strong) NSString *displayName;
-
+/*
+ 好友状态
+ */
 @property (nonatomic, assign) BOOL isFriend;
+
+/*
+ 性别
+ */
+@property (nonatomic, assign) BOOL sex;
+
+/*
+ 验证信息
+ */
+@property (nonatomic, strong) NSString *apply_comment;
+
 
 @end

@@ -116,6 +116,8 @@
 		D61DC5922146532F0026EB08 /* RCDAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61DC5912146532F0026EB08 /* RCDAddressBookViewController.m */; };
 		D61DC593214658B30026EB08 /* RCDContactSelectedTableViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = D61C15C3213D3F4D00D5EA79 /* RCDContactSelectedTableViewController.h */; };
 		D61DC59421465A220026EB08 /* RealTimeLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61C1576213D3C7F00D5EA79 /* RealTimeLocationViewController.m */; };
+		D61DC5982148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D61DC5972148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.m */; };
+		D61DC59B2148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D61DC59A2148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.m */; };
 		D63D7D5E2101D02E004AE0FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D63D7D5D2101D02E004AE0FA /* AppDelegate.m */; };
 		D63D7D612101D02E004AE0FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63D7D602101D02E004AE0FA /* ViewController.m */; };
 		D63D7D642101D02E004AE0FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D63D7D622101D02E004AE0FA /* Main.storyboard */; };
@@ -527,6 +529,10 @@
 		D61C16DA21464BC500D5EA79 /* RongContactCard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongContactCard.framework; sourceTree = "<group>"; };
 		D61DC5902146532F0026EB08 /* RCDAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDAddressBookViewController.h; sourceTree = "<group>"; };
 		D61DC5912146532F0026EB08 /* RCDAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDAddressBookViewController.m; sourceTree = "<group>"; };
+		D61DC5962148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMyInfoHeadTableViewCell.h; sourceTree = "<group>"; };
+		D61DC5972148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMyInfoHeadTableViewCell.m; sourceTree = "<group>"; };
+		D61DC5992148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMyInfoChoiceTableViewCell.h; sourceTree = "<group>"; };
+		D61DC59A2148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMyInfoChoiceTableViewCell.m; sourceTree = "<group>"; };
 		D63D7D592101D02D004AE0FA /* ChatProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63D7D5C2101D02E004AE0FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D63D7D5D2101D02E004AE0FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1182,6 +1188,17 @@
 			path = ifly;
 			sourceTree = "<group>";
 		};
+		D61DC5952148EA540026EB08 /* MyInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				D61DC5962148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.h */,
+				D61DC5972148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.m */,
+				D61DC5992148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.h */,
+				D61DC59A2148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.m */,
+			);
+			path = MyInfoView;
+			sourceTree = "<group>";
+		};
 		D63D7D502101D02D004AE0FA = {
 			isa = PBXGroup;
 			children = (
@@ -1303,6 +1320,7 @@
 		D63D7D972101E08E004AE0FA /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
+				D61DC5952148EA540026EB08 /* MyInfoView */,
 				D646ECB22109ACC600DB1488 /* XGMainMyInfoViewController.h */,
 				D646ECB32109ACC600DB1488 /* XGMainMyInfoViewController.m */,
 			);
@@ -2079,6 +2097,7 @@
 				D646EC7F21099AE400DB1488 /* ChatEmojiIcons.m in Sources */,
 				D646EB042109759600DB1488 /* MyAFSessionManager.m in Sources */,
 				D646EC8721099AE500DB1488 /* ChatInputTextView.m in Sources */,
+				D61DC5982148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.m in Sources */,
 				D646ECBA2109AD1700DB1488 /* XGMainRegisterViewController.m in Sources */,
 				D61C158A213D3CBD00D5EA79 /* RCDRCIMDataSource.m in Sources */,
 				D61C15DB213D3F4F00D5EA79 /* RCDPrivateSettingsCell.m in Sources */,
@@ -2171,6 +2190,7 @@
 				D61C16AB2146394B00D5EA79 /* RCDForwardAlertView.m in Sources */,
 				D646EC8421099AE500DB1488 /* ChatOtherView.m in Sources */,
 				D61C1581213D3C8000D5EA79 /* RealTimeLocationEndCell.m in Sources */,
+				D61DC59B2148EACD0026EB08 /* XGMyInfoChoiceTableViewCell.m in Sources */,
 				37B559FD2115CCD2003282B8 /* XGLoginRegisterBaseViewController.m in Sources */,
 				D646EC7A21099AE400DB1488 /* ChatKeyBoardView.m in Sources */,
 				D646EB5421097CF000DB1488 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,

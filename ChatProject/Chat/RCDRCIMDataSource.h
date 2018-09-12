@@ -52,6 +52,6 @@
  *获取好友请求列表
  */
 
-- (NSArray *)getAddFriendsList:(void(^)(void))completion;
+- (void)getAddFriendsList:(void(^)(NSArray *))completion;
 
 @end

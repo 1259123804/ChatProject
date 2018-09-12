@@ -26,4 +26,5 @@
 #define kFriends_search @"friends/search/" //好友搜索
 #define kFriends_applylist @"friends/applylist/" //好友请求列表
 #define kFriends_list @"friends/list/" //好友列表
+#define kFriends_accept @"friends/accept/" //接受好友请求
 #endif /* NetInterface_h */

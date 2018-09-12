@@ -73,7 +73,7 @@
     _acceptBtn.tag = self.tag;
     [_acceptBtn setTitle:@"接受" forState:UIControlStateNormal];
     [_acceptBtn setTintColor:[UIColor whiteColor]];
-    [_acceptBtn setBackgroundColor:[[UIColor alloc] initWithRed:23 / 255.f green:136 / 255.f blue:213 / 255.f alpha:1]];
+    [_acceptBtn setBackgroundColor:[[UIColor alloc] initWithRed:252 / 255.f green:114 / 255.f blue:141 / 255.f alpha:1]];
     _acceptBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [_acceptBtn.titleLabel setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
 
@@ -98,17 +98,17 @@
                                       placeholderImage:[UIImage imageNamed:@"contact"]];
         }
     }
-    if ([user.status intValue] == 20) {
+    if ([user.status intValue] == 1) {
         self.rightLabel.text = @"已接受";
         self.acceptBtn.hidden = YES;
         self.arrow.hidden = NO;
     }
-    if ([user.status intValue] == 10) {
-        self.rightLabel.text = @"已邀请";
-        self.selected = NO;
-        self.arrow.hidden = YES;
-        self.acceptBtn.hidden = YES;
-    }
+//    if ([user.status intValue] == 10) {
+//        self.rightLabel.text = @"已邀请";
+//        self.selected = NO;
+//        self.arrow.hidden = YES;
+//        self.acceptBtn.hidden = YES;
+//    }
 
     if ([RCIM sharedRCIM].globalConversationAvatarStyle == RC_USER_AVATAR_CYCLE &&
         [RCIM sharedRCIM].globalMessageAvatarStyle == RC_USER_AVATAR_CYCLE) {

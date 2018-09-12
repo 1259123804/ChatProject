@@ -167,7 +167,7 @@
     resultBlock(groupInfo);
 }
 
-- (NSArray *)getAddFriendsList:(void (^)(void))completion{
+- (void)getAddFriendsList:(void (^)(NSArray *))completion{
     
     NSString *url = [kTestApi stringByAppendingString:kFriends_applylist];
     NSMutableArray *dataArray = [NSMutableArray array];
@@ -177,15 +177,23 @@
             NSArray *listArr = response[@"result"][@"apply_list"];
             for (NSDictionary *dic in listArr) {
                 
-                RCUserInfo *user = [RCUserInfo new];
-                user.userId = dic[@"id"];
+                RCDUserInfo *user = [RCDUserInfo new];
+                user.userId = [NSString stringWithFormat:@"%d", [dic[@"id"] intValue]];
                 user.name = [dic objectForKey:@"name"];
                 user.portraitUri = [dic objectForKey:@"avatar"];
+                user.sex = [[dic objectForKey:@"sex"] boolValue];
+                user.isFriend = [[dic objectForKey:@"status"] boolValue];
+                user.status = [NSString stringWithFormat:@"%d", user.isFriend];
+                user.apply_comment = dic[@"apply_comment"];
                 if (!user.portraitUri || user.portraitUri.length <= 0) {
                     user.portraitUri = [RCDUtilities defaultUserPortrait:user];
                 }
                 [[RCDataBaseManager shareInstance] insertUserToDB:user];
                 [dataArray addObject:user];
+                if (completion) {
+                    
+                    completion(dataArray);
+                }
             }
         }
         
@@ -193,7 +201,6 @@
        
         MyAlertView(@"网络错误", nil);
     }];
-    return dataArray;
 }
 
 @end

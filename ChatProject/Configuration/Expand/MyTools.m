@@ -13,6 +13,9 @@
 #import "GTMBase64.h"
 #import "AESCrypt.h"
 #import "KeychainItemWrapper.h"
+#import "RCDUserInfo.h"
+#import "RCDataBaseManager.h"
+#import "RCDUtilities.h"
 #define SoltKey @"RzWXIlfXVrlTK999"
 @implementation MyTools
 + (MyTools *)defaultTools{
@@ -923,13 +926,34 @@
 }
 
 + (void)savePersonInfoWithDic:(NSDictionary *)infoDic{
-    
+
     NSDictionary *user = infoDic[@"user"];
     DefaultsSetValueForKey(infoDic[@"token"], kUser_token);
     DefaultsSetValueForKey(user[@"name"], kUser_name);
     DefaultsSetValueForKey(user[@"avatar"], kUser_avatar);
     DefaultsSynchronize;
+    NSString *userId = [NSString stringWithFormat:@"%d", [user[@"id"] intValue]];
+    RCUserInfo *userInfo = [[RCUserInfo alloc] initWithUserId:userId name:user[@"name"] portrait:user[@"avatar"]];
+    if (!userInfo.portraitUri || userInfo.portraitUri.length <= 0) {
+        userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
+    }
+    [[RCDataBaseManager shareInstance] insertUserToDB:userInfo];
+    [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userId];
+    [RCIM sharedRCIM].currentUserInfo = userInfo;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
+    NSString *token = nil;
+    [[RCIM sharedRCIM] connectWithToken:token success:^(NSString *userId) {
+        
+        NSLog(@"融云链接成功");
+        
+    } error:^(RCConnectErrorCode status) {
+        
+        //SDK会自动重连登录，这时候需要监听连接状态
+        [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
+        
+    } tokenIncorrect:^{
+        
+    }];
 }
 
 @end

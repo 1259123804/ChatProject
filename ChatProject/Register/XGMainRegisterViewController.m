@@ -40,9 +40,6 @@
     self.loginTitleLabel.text = @"注册";
     
     //TODO:测试数据
-    self.loginPhoneTextField.text = @"13253595712";
-    self.loginPasswordTextField.text = @"555555";
-    self.loginIdentifyTextField.text = @"555555";
     
     self.loginTopView.sd_layout
     .leftSpaceToView(self.view, 37.5 * kScreenWidth / 375)

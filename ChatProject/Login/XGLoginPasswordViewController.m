@@ -37,9 +37,6 @@
     [self.loginBackgroundView addSubview:self.loginBtn];
     [self.view addSubview:self.otherLoginView];
     
-    self.loginPhoneTextField.text = @"13253595712";
-    self.loginPasswordField.text = @"555555";
-    
     self.loginHeadView.sd_layout
     .widthIs(80)
     .heightIs(80)
