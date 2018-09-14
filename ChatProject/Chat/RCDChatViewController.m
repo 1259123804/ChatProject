@@ -51,6 +51,7 @@
 @implementation RCDChatViewController
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     NSString *userInputStatusKey =
         [NSString stringWithFormat:@"%lu--%@", (unsigned long)self.conversationType, self.targetId];
     if (userInputStatus && [userInputStatus.allKeys containsObject:userInputStatusKey]) {
@@ -138,7 +139,7 @@
 
     ///注册自定义测试消息Cell
     [self registerClass:[RCDTestMessageCell class] forMessageClass:[RCDTestMessage class]];
-    [self setLeftNavigationItem];
+    //[self setLeftNavigationItem];
     [self notifyUpdateUnreadMessageCount];
     if (self.conversationType != ConversationType_APPSERVICE &&
         self.conversationType != ConversationType_PUBLICSERVICE) {
@@ -469,19 +470,19 @@
         @(ConversationType_PRIVATE), @(ConversationType_DISCUSSION), @(ConversationType_APPSERVICE),
         @(ConversationType_PUBLICSERVICE), @(ConversationType_GROUP)
     ]];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *backString = nil;
-        if (count > 0 && count < 1000) {
-            backString = [NSString stringWithFormat:@"返回(%d)", count];
-        } else if (count >= 1000) {
-            backString = @"返回(...)";
-        } else {
-            backString = @"返回";
-        }
-        RCDUIBarButtonItem *leftButton = [[RCDUIBarButtonItem alloc] initWithLeftBarButton:backString target:self                        action:@selector(leftBarButtonItemPressed:)];
-        [self.navigationItem setLeftBarButtonItem:leftButton];
-        self.navigationItem.rightBarButtonItem = self.rightBtn;
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSString *backString = nil;
+//        if (count > 0 && count < 1000) {
+//            backString = [NSString stringWithFormat:@"返回(%d)", count];
+//        } else if (count >= 1000) {
+//            backString = @"返回(...)";
+//        } else {
+//            backString = @"返回";
+//        }
+//        RCDUIBarButtonItem *leftButton = [[RCDUIBarButtonItem alloc] initWithLeftBarButton:backString target:self                        action:@selector(leftBarButtonItemPressed:)];
+//        [self.navigationItem setLeftBarButtonItem:leftButton];
+//        self.navigationItem.rightBarButtonItem = self.rightBtn;
+//    });
 }
 
 - (void)saveNewPhotoToLocalSystemAfterSendingSuccess:(UIImage *)newImage {

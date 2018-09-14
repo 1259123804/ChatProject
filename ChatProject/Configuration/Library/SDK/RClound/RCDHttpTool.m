@@ -412,7 +412,9 @@
 - (void)getFriendscomplete:(void (^)(NSMutableArray *))friendList {
     NSMutableArray *list = [NSMutableArray new];
 
+    __weak typeof(self) weakSelf = self;
     [AFHttpTool getFriendListFromServerSuccess:^(id response) {
+
         if (((NSArray *)response[@"result"]).count == 0) {
             friendList(nil);
             return;
@@ -420,7 +422,7 @@
         NSString *code = [NSString stringWithFormat:@"%@", response[@"status"]];
         if (friendList) {
             if ([code isEqualToString:@"0"]) {
-                [_allFriends removeAllObjects];
+                [weakSelf.allFriends removeAllObjects];
                 NSArray *regDataArray = response[@"result"];
                 [[RCDataBaseManager shareInstance] clearFriendsData];
                 NSMutableArray *userInfoList = [NSMutableArray new];
@@ -439,8 +441,8 @@
                         }
                         //userInfo.status = [NSString stringWithFormat:@"%@", [dic objectForKey:@"status"]];
                         //userInfo.updatedAt = [NSString stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
-                        userInfo.isFriend = YES;
-                        userInfo.status = [NSString stringWithFormat:@"%d", userInfo.isFriend];
+                        //userInfo.isFriend = YES;
+                        //userInfo.status = [NSString stringWithFormat:@"%d", userInfo.isFriend];
                         [list addObject:userInfo];
                         [self.allFriends addObject:userInfo];
 
@@ -456,7 +458,6 @@
                     }
                 }
                 [[RCDataBaseManager shareInstance] insertUserListToDB:userInfoList complete:^(BOOL result){
-
                     
                 }];
                 [[RCDataBaseManager shareInstance] insertFriendListToDB:friendInfoList complete:^(BOOL result) {
@@ -489,7 +490,7 @@
     NSMutableArray *list = [NSMutableArray new];
     [AFHttpTool findUserByPhone:phone
         success:^(id response) {
-            if (userList && [response[@"code"] intValue] == 200) {
+            if (userList && [response[@"status"] intValue] == 0) {
                 id result = response[@"result"];
                 if ([result respondsToSelector:@selector(intValue)])
                     return;

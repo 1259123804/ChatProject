@@ -7,7 +7,7 @@
 //
 
 #import "XGMyInfoHeadTableViewCell.h"
-
+#import "XGMainLoginViewController.h"
 @implementation XGMyInfoHeadTableViewCell
 
 - (void)awakeFromNib {
@@ -126,8 +126,21 @@
     if (_mainView == nil) {
         
         _mainView = [[UIView alloc] init];
+        UIButton *quitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [quitBtn setTitle:@"退出" forState:UIControlStateNormal];
+        [quitBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        quitBtn.frame = CGRectMake(0, 0, 50, 30);
+        [_mainView addSubview:quitBtn];
+        [quitBtn addTarget:self action:@selector(quitClick) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _mainView;
+}
+
+- (void)quitClick{
+    
+    [MyTools clearUserInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_logout object:nil];
 }
 
 - (UIImageView *)headImageView{
@@ -135,7 +148,7 @@
     if (_headImageView == nil) {
         
         _headImageView = [[UIImageView alloc] init];
-        _headImageView.backgroundColor = [UIColor redColor];
+       // _headImageView.backgroundColor = [UIColor redColor];
     }
     return _headImageView;
 }

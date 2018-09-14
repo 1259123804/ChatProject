@@ -42,6 +42,20 @@
     if (indexPath.section == 0) {
         
         XGMyInfoHeadTableViewCell *headCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([XGMyInfoHeadTableViewCell class])];
+        NSString *userName = DefaultsValueForKey(kUser_name);
+        NSString *userId = DefaultsValueForKey(kUser_id);
+        headCell.nameLabel.text = userName;
+        headCell.idLabel.text = userId;
+        if (DefaultsValueForKey(kUser_avatar) && ![DefaultsValueForKey(kUser_avatar) isEqualToString:@""]) {
+            
+            [headCell.imageView sd_setImageWithURL:[NSURL URLWithString:DefaultsValueForKey(kUser_avatar)]];
+        }else{
+            DefaultPortraitView *defaultPortrait =
+            [[DefaultPortraitView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+            [defaultPortrait setColorAndLabel:userId Nickname:userName];
+            UIImage *portrait = [defaultPortrait imageFromView];
+            headCell.headImageView.image = portrait;
+        }
         return headCell;
     }
     XGMyInfoChoiceTableViewCell *choiceCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([XGMyInfoChoiceTableViewCell class])];

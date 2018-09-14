@@ -25,6 +25,7 @@
 #import "RCDUIBarButtonItem.h"
 #import "RCDUserInfoManager.h"
 #import "RCDUtilities.h"
+#import "RCDChatViewController.h"
 #import "RCDForwardAlertView.h"
 @interface XGMainChatViewController ()<UISearchBarDelegate>
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -348,6 +349,7 @@
             } break;
                 
             case 3: {
+                
                 if ([RCDForwardMananer shareInstance].isForward) {
                     RCConversation *conver = [[RCConversation alloc] init];
                     conver.targetId = [RCIM sharedRCIM].currentUserInfo.userId;
@@ -358,7 +360,7 @@
                 }
                 
                 RCDPersonDetailViewController *detailViewController = [[RCDPersonDetailViewController alloc] init];
-                [MyTools pushViewControllerFrom:self To:detailViewController animated:YES];
+                [self.navigationController pushViewController:detailViewController animated:YES];
                 detailViewController.userId = [RCIM sharedRCIM].currentUserInfo.userId;
                 return;
             }
@@ -373,6 +375,16 @@
 //    if (user == nil) {
 //        return;
 //    }
+    
+    RCDChatViewController *chatViewController = [[RCDChatViewController alloc] init];
+    chatViewController.conversationType = ConversationType_PRIVATE;
+    user = self.friendsListArray[indexPath.row];
+    chatViewController.targetId = user.userId;
+    chatViewController.title = user.name;
+    chatViewController.needPopToRootView = YES;
+    chatViewController.displayUserNameInCell = NO;
+    [MyTools pushViewControllerFrom:self To:chatViewController animated:YES];
+    return;
     if ([RCDForwardMananer shareInstance].isForward) {
         RCConversation *conver = [[RCConversation alloc] init];
         conver.targetId = user.userId;
@@ -448,8 +460,7 @@
 
 - (NSArray *)getAllFriendList {
     NSMutableArray *friendList = [[NSMutableArray alloc] init];
-    //NSMutableArray *userInfoList = [NSMutableArray arrayWithArray:.[[RCDataBaseManager shareInstance] getAllFriends]];
-    NSMutableArray *userInfoList = [NSMutableArray array];
+    NSMutableArray *userInfoList = [NSMutableArray arrayWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
     for (RCDUserInfo *user in userInfoList) {
         if ([user.status isEqualToString:@"1"]) {
             [friendList addObject:user];
@@ -458,8 +469,7 @@
     if (friendList.count <= 0 && !self.hasSyncFriendList) {
         [RCDDataSource syncFriendList:[RCIM sharedRCIM].currentUserInfo.userId complete:^(NSMutableArray *result) {
             self.hasSyncFriendList = YES;
-            [self sortAndRefreshWithList:result];
-            //[self sortAndRefreshWithList:[self getAllFriendList]];
+            [self sortAndRefreshWithList:[self getAllFriendList]];
         }];
     }
     //如有好友备注，则显示备注
@@ -529,9 +539,19 @@
 - (UIImageView *)headerImageView{
     
     if (_headerImageView == nil) {
-        
-        _headerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header"]];
+       
+        _headerImageView = [[UIImageView alloc] initWithImage:nil];
         _headerImageView.frame = CGRectMake(10, CGRectGetMidY(self.navTitleLabel.frame) - 20 , 40, 40);
+        
+        if (DefaultsValueForKey(kUser_avatar) && ![DefaultsValueForKey(kUser_avatar) isEqualToString:@""]) {
+            
+            [_headerImageView sd_setImageWithURL:[NSURL URLWithString:DefaultsValueForKey(kUser_avatar)]];
+        }else{
+            
+            DefaultPortraitView *portrait = [[DefaultPortraitView alloc] initWithFrame:_headerImageView.bounds];
+            [portrait setColorAndLabel:DefaultsValueForKey(kUser_id) Nickname:kUser_name];
+            _headerImageView.image = [portrait imageFromView];
+        }
     }
     return _headerImageView;
 }

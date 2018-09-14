@@ -928,11 +928,14 @@
 + (void)savePersonInfoWithDic:(NSDictionary *)infoDic{
 
     NSDictionary *user = infoDic[@"user"];
+    NSString *userId = [NSString stringWithFormat:@"%d", [user[@"id"] intValue]];
     DefaultsSetValueForKey(infoDic[@"token"], kUser_token);
     DefaultsSetValueForKey(user[@"name"], kUser_name);
     DefaultsSetValueForKey(user[@"avatar"], kUser_avatar);
+    DefaultsSetValueForKey(userId, kUser_id);
+    DefaultsSetValueForKey(user[@"phone"], kUser_phone);
     DefaultsSynchronize;
-    NSString *userId = [NSString stringWithFormat:@"%d", [user[@"id"] intValue]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_loginSuccess object:nil];
     RCUserInfo *userInfo = [[RCUserInfo alloc] initWithUserId:userId name:user[@"name"] portrait:user[@"avatar"]];
     if (!userInfo.portraitUri || userInfo.portraitUri.length <= 0) {
         userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
@@ -941,7 +944,7 @@
     [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userId];
     [RCIM sharedRCIM].currentUserInfo = userInfo;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
-    NSString *token = nil;
+    NSString *token = user[@"rcloud_token"];
     [[RCIM sharedRCIM] connectWithToken:token success:^(NSString *userId) {
         
         NSLog(@"融云链接成功");
@@ -954,6 +957,23 @@
     } tokenIncorrect:^{
         
     }];
+}
+
++ (void)clearUserInfo{
+    
+    [DEFAULTS removeObjectForKey:kUser_id];
+    [DEFAULTS removeObjectForKey:kUser_name];
+    [DEFAULTS removeObjectForKey:kUser_avatar];
+    [DEFAULTS removeObjectForKey:kUser_phone];
+    [DEFAULTS removeObjectForKey:kUser_token];
+    [DEFAULTS removeObjectForKey:kUser_RCIMToken];
+    [DEFAULTS synchronize];
+    
+    [[RCDataBaseManager shareInstance] closeDBForDisconnect];
+    
+    XGLoginPasswordViewController *mainViewController = [[XGLoginPasswordViewController alloc] init];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:mainViewController animated:YES completion:nil];
+    [[RCIMClient sharedRCIMClient] logout];
 }
 
 @end

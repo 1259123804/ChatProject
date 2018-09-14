@@ -521,6 +521,9 @@
                             NSDictionary *result = responseObject[@"result"];
                             [MyTools savePersonInfoWithDic:result];
                            
+                        }else if (responseObject[@"message"]){
+                            
+                            MyAlertView(responseObject[@"message"], nil);
                         }
                         
                     } failure:^(NSError * _Nonnull error) {

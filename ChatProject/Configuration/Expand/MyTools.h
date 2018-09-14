@@ -81,5 +81,5 @@
 + (NSString *)suitImageViewAndFontSizeWithString:(NSString *)content;
 
 + (void)savePersonInfoWithDic:(NSDictionary *)infoDic;
-
++ (void)clearUserInfo;
 @end

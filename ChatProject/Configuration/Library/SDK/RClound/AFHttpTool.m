@@ -258,11 +258,11 @@
 + (void)findUserByPhone:(NSString *)Phone
                 success:(void (^)(id response))success
                 failure:(void (^)(NSError *err))failure {
-    [AFHttpTool requestWihtMethod:RequestMethodTypeGet
-                              url:[NSString stringWithFormat:@"user/find/86/%@", Phone]
-                           params:nil
-                          success:success
-                          failure:failure];
+    
+    NSDictionary *dataDic = @{@"phone": Phone};
+    [MyAFSessionManager requestWithURLString:[kTestApi stringByAppendingString:kFriends_search] parameters:dataDic requestType:MyRequestTypeGet managerType:MyAFSessionManagerTypeJsonWithToken success:success failure:failure];
+    
+    //[AFHttpTool requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"user/find/86/%@", Phone] params:nil success:success failure:failure];
 }
 
 // get token
