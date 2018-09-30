@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)postWithURLString:(NSString *)URLString parameters:(nullable id)parameters success:(nullable void(^)(id _Nullable responseObject))success failure:(nullable void(^)(NSError *error))failure;
 
 //upload请求
-- (void)uploadWithURLString:(NSString *)URLString parameters:(nullable id)parameters uploadParameter:(nullable uploadParameter *)uploadPara success:(nullable void(^)(id _Nullable responseObject))success failure:(nullable void(^)(NSError *error))failure;
++ (void)uploadWithURLString:(NSString *)URLString parameters:(nullable id)parameters uploadParameter:(nullable id)uploadPara success:(nullable void(^)(id _Nullable responseObject))success failure:(nullable void(^)(NSError *error))failure;
 
 //delete请求
 - (void)deleteWithURLString:(NSString *)URLString parameters:(nullable id)parameters success:(nullable void(^)(id _Nullable responseObject))success failure:(nullable void(^)(NSError *error))failure;

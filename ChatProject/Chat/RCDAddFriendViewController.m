@@ -163,7 +163,7 @@
         [[NSMutableArray alloc] initWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
     BOOL isFriend = NO;
     for (RCDUserInfo *user in cacheList) {
-        if ([user.userId isEqualToString:self.targetUserInfo.userId] && [user.status isEqualToString:@"20"]) {
+        if ([user.userId isEqualToString:self.targetUserInfo.userId] && [user.status isEqualToString:@"1"]) {
             isFriend = YES;
             break;
         }

@@ -27,4 +27,9 @@
 #define kFriends_applylist @"friends/applylist/" //好友请求列表
 #define kFriends_list @"friends/list/" //好友列表
 #define kFriends_accept @"friends/accept/" //接受好友请求
+
+#pragma mark - 发布动态
+#define kPicture_upload @"picture/upload/" //上传图片
+#define kdynamic_publish @"dongtai/publish/" //发布动态
+
 #endif /* NetInterface_h */

@@ -554,6 +554,7 @@
         _loginBtn.layer.masksToBounds = YES;
         [[_loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             
+            [self.view endEditing:YES];
             [self checkCanLoginState:^(BOOL canLoginState) {
                 
                 if (canLoginState){

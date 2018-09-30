@@ -27,6 +27,12 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [self.myTableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 3;
@@ -48,10 +54,10 @@
         headCell.idLabel.text = userId;
         if (DefaultsValueForKey(kUser_avatar) && ![DefaultsValueForKey(kUser_avatar) isEqualToString:@""]) {
             
-            [headCell.imageView sd_setImageWithURL:[NSURL URLWithString:DefaultsValueForKey(kUser_avatar)]];
+            [headCell.headImageView sd_setImageWithURL:[NSURL URLWithString:DefaultsValueForKey(kUser_avatar)]];
         }else{
             DefaultPortraitView *defaultPortrait =
-            [[DefaultPortraitView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+            [[DefaultPortraitView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
             [defaultPortrait setColorAndLabel:userId Nickname:userName];
             UIImage *portrait = [defaultPortrait imageFromView];
             headCell.headImageView.image = portrait;

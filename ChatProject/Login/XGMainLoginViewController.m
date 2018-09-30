@@ -499,7 +499,6 @@
                                 
                                 MyAlertView(@"验证成功", nil);
                                 //直接登录
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
                                 [self dismissViewControllerAnimated:YES completion:nil];
                                 
                             }

@@ -40,7 +40,6 @@
         {
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
-            [self getAppSignWithManager:manager];
         }
             break;
             
@@ -58,8 +57,6 @@
         {
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
-            [self getAppSignWithManager:manager];
-            
             
         }
             break;
@@ -75,6 +72,7 @@
         default:
             break;
     }
+    [self getAppSignWithManager:manager];
     
     return manager;
 }
@@ -283,17 +281,21 @@
 }
 
 //upload请求
-- (void)uploadWithURLString:(NSString *)URLString parameters:(nullable id)parameters uploadParameter:(nullable uploadParameter *)uploadPara success:(nullable void(^)(id _Nullable responseObject))success failure:(nullable void(^)(NSError *error))failure{
++ (void)uploadWithURLString:(NSString *)URLString parameters:(nullable id)parameters uploadParameter:(NSDictionary *)uploadPara success:(nullable void(^)(id _Nullable responseObject))success failure:(nullable void(^)(NSError *error))failure{
     
-    [self POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    MyAFSessionManager *manager = [MyAFSessionManager initMyAFSessionManagerWithType:MyAFSessionManagerTypeJsonWithToken];
+    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        [formData appendPartWithFileData:uploadPara.data name:uploadPara.paraName fileName:uploadPara.fileName mimeType:uploadPara.mimeType];
+        [formData appendPartWithFileData:uploadPara[@"data"] name:uploadPara[@"paraName"] fileName:uploadPara[@"fileName"] mimeType:uploadPara[@"mimeType"]];
         
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {
+        if ([responseObject[@"status"] intValue] == 0){
             
-            success(responseObject);
+            if (success) {
+                
+                success(responseObject);
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

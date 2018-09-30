@@ -16,6 +16,8 @@
 #import "RCDUserInfo.h"
 #import "RCDataBaseManager.h"
 #import "RCDUtilities.h"
+#import "AppDelegate.h"
+#import "XGLeftChoiceViewController.h"
 #define SoltKey @"RzWXIlfXVrlTK999"
 @implementation MyTools
 + (MyTools *)defaultTools{
@@ -925,26 +927,130 @@
     return htmls;
 }
 
-+ (void)savePersonInfoWithDic:(NSDictionary *)infoDic{
++ (void)savePersonInfoWithDic:(NSDictionary *)infoDic isRegister:(BOOL)isRegister headImage:(UIImage *)headImage{
 
     NSDictionary *user = infoDic[@"user"];
     NSString *userId = [NSString stringWithFormat:@"%d", [user[@"id"] intValue]];
+    NSString *token = user[@"rcloud_token"];
     DefaultsSetValueForKey(infoDic[@"token"], kUser_token);
     DefaultsSetValueForKey(user[@"name"], kUser_name);
     DefaultsSetValueForKey(user[@"avatar"], kUser_avatar);
     DefaultsSetValueForKey(userId, kUser_id);
     DefaultsSetValueForKey(user[@"phone"], kUser_phone);
+    DefaultsSetValueForKey(token, kUser_RCIMToken);
     DefaultsSynchronize;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_loginSuccess object:nil];
+    
     RCUserInfo *userInfo = [[RCUserInfo alloc] initWithUserId:userId name:user[@"name"] portrait:user[@"avatar"]];
-    if (!userInfo.portraitUri || userInfo.portraitUri.length <= 0) {
-        userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
+    if (isRegister && headImage) {
+        
+        if (headImage) {
+            
+            [MyTools uploadImageWithImage:@[headImage] uploadType:@"0" completion:^(NSDictionary *responseObject, NSArray *imageArr) {
+                
+                NSString *avatarUrl = responseObject[@"result"][@"image_url"];
+                if (avatarUrl) {
+                    
+                    DefaultsSetValueForKey(avatarUrl, kUser_avatar);
+                    DefaultsSynchronize;
+                }
+                userInfo.portraitUri = avatarUrl;
+                if (!userInfo.portraitUri || userInfo.portraitUri.length <= 0) {
+                    userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
+                }
+                [[RCDataBaseManager shareInstance] insertUserToDB:userInfo];
+                [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userId];
+                [RCIM sharedRCIM].currentUserInfo = userInfo;
+                [MyTools loginSuccessOtherMethodWithToken:token];
+            }];
+        }
+    }else{
+       
+        if (!userInfo.portraitUri || userInfo.portraitUri.length <= 0) {
+            userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
+        }
+        [[RCDataBaseManager shareInstance] insertUserToDB:userInfo];
+        [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userId];
+        [RCIM sharedRCIM].currentUserInfo = userInfo;
+        [MyTools loginSuccessOtherMethodWithToken:token];
     }
-    [[RCDataBaseManager shareInstance] insertUserToDB:userInfo];
-    [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userId];
-    [RCIM sharedRCIM].currentUserInfo = userInfo;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
-    NSString *token = user[@"rcloud_token"];
+   
+}
+
++ (void)uploadImageWithImage:(NSArray *)uploadImages uploadType:(NSString *)type completion:(void(^)(NSDictionary *, NSArray*))completion{
+    
+    NSDictionary *imageDic = @{@"type": type};
+    NSMutableArray *imageParams = [NSMutableArray array];
+    NSMutableArray *uploadStates = [NSMutableArray array];
+    NSMutableArray *uploadedImages = [NSMutableArray array];
+    for (UIImage *uploadImage in uploadImages) {
+        
+        NSData *imageData = UIImagePNGRepresentation(uploadImage);
+        NSString *fileName = [MyTools uploadFileName];
+        NSDictionary *uploadDic = @{@"fileName": fileName, @"data": imageData, @"paraName": @"file", @"mimeType": @"image/png"};
+        [imageParams addObject:uploadDic];
+        [uploadStates addObject:@(0)];
+    }
+    for (int i = 0; i < imageParams.count; i++) {
+        
+        NSDictionary *imageParam = imageParams[i];
+        [MyAFSessionManager uploadWithURLString:[kTestApi stringByAppendingString:kPicture_upload] parameters:imageDic uploadParameter:imageParam success:^(id  _Nullable responseObject) {
+            
+            if ([responseObject[@"status"] intValue] == 0) {
+                
+                [uploadStates setObject:@(1) atIndexedSubscript:i];
+                if (responseObject[@"result"][@"image_id"]) {
+                    
+                    [uploadedImages addObject:@{@"image": [NSString stringWithFormat:@"%d", [responseObject[@"result"][@"image_id"] intValue]]}];
+                }
+                if (![uploadStates containsObject:@(0)]) {
+                    
+                    if (completion) {
+                        
+                        completion(responseObject, uploadedImages);
+                    }
+                }
+            }
+            
+        } failure:^(NSError * _Nonnull error) {
+            
+            MyAlertView(@"上传失败", nil);
+        }];
+    }
+    
+}
+
++ (NSString *)uploadFileName{
+    
+    NSDateFormatter *matter = [[NSDateFormatter alloc] init];
+    [matter setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *dateStr = [matter stringFromDate:[NSDate date]];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kUser_id]) {
+        
+        dateStr = [[[NSUserDefaults standardUserDefaults] objectForKey:kUser_id] stringByAppendingString:dateStr];
+    }else{
+        
+        NSString *str = nil;
+        
+        for (int i = 0; i<16; i++) {
+            
+            str = [NSString stringWithFormat:@"%d", arc4random()%10];
+        }
+        dateStr = [dateStr stringByAppendingString:str];
+    }
+    return [dateStr stringByAppendingString:@".png"];
+}
+
++ (void)loginSuccessOtherMethodWithToken:(NSString *)token{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_loginSuccess object:nil];
+    
+    //[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
+    XGLeftChoiceViewController *leftChoiceController = [[XGLeftChoiceViewController alloc] init];
+    XGMainTabbarViewController *tabbarController = [[XGMainTabbarViewController alloc] init];
+    AppDelegate *applicationDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    applicationDelegate.leftSliderController = [[XGLeftSliderViewController alloc] initWithLeftView:leftChoiceController andMainView:tabbarController];
+    [UIApplication sharedApplication].keyWindow.rootViewController = applicationDelegate.leftSliderController;
     [[RCIM sharedRCIM] connectWithToken:token success:^(NSString *userId) {
         
         NSLog(@"融云链接成功");

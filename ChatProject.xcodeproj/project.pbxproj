@@ -310,6 +310,21 @@
 		D683194D212D6C7B00F3741D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683194C212D6C7B00F3741D /* ImageIO.framework */; };
 		D683194F212D6CF400F3741D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D683194E212D6CF400F3741D /* libc++.tbd */; };
 		D6831953212EC22600F3741D /* XGMainFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6831952212EC22600F3741D /* XGMainFindViewController.m */; };
+		D6922801215B76780050F568 /* XGPublicDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922800215B76780050F568 /* XGPublicDynamicViewController.m */; };
+		D6922816215B778D0050F568 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922806215B778C0050F568 /* TZAssetCell.m */; };
+		D6922817215B778D0050F568 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922807215B778C0050F568 /* TZVideoPlayerController.m */; };
+		D6922818215B778D0050F568 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922808215B778C0050F568 /* TZAssetModel.m */; };
+		D6922819215B778D0050F568 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = D692280A215B778C0050F568 /* UIView+Layout.m */; };
+		D692281A215B778D0050F568 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D692280B215B778C0050F568 /* TZPhotoPreviewController.m */; };
+		D692281B215B778D0050F568 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D692280C215B778C0050F568 /* TZImagePickerController.bundle */; };
+		D692281C215B778D0050F568 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D692280E215B778C0050F568 /* TZImageManager.m */; };
+		D692281D215B778D0050F568 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D692280F215B778C0050F568 /* TZPhotoPickerController.m */; };
+		D692281E215B778D0050F568 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922810215B778C0050F568 /* TZPhotoPreviewCell.m */; };
+		D692281F215B778D0050F568 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922815215B778C0050F568 /* TZImagePickerController.m */; };
+		D6922822215B77EF0050F568 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922820215B77EF0050F568 /* TZTestCell.m */; };
+		D6922825215E22330050F568 /* XGLeftSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6922824215E22330050F568 /* XGLeftSliderViewController.m */; };
+		D692282B215E23C60050F568 /* UIView+UIView_extra.m in Sources */ = {isa = PBXBuildFile; fileRef = D692282A215E23C60050F568 /* UIView+UIView_extra.m */; };
+		D692282E215E27EF0050F568 /* XGLeftChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D692282D215E27EF0050F568 /* XGLeftChoiceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -791,6 +806,35 @@
 		D683194E212D6CF400F3741D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		D6831951212EC22600F3741D /* XGMainFindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGMainFindViewController.h; sourceTree = "<group>"; };
 		D6831952212EC22600F3741D /* XGMainFindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGMainFindViewController.m; sourceTree = "<group>"; };
+		D69227FF215B76780050F568 /* XGPublicDynamicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGPublicDynamicViewController.h; sourceTree = "<group>"; };
+		D6922800215B76780050F568 /* XGPublicDynamicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGPublicDynamicViewController.m; sourceTree = "<group>"; };
+		D6922803215B778C0050F568 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		D6922804215B778C0050F568 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		D6922805215B778C0050F568 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		D6922806215B778C0050F568 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		D6922807215B778C0050F568 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		D6922808215B778C0050F568 /* TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		D6922809215B778C0050F568 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		D692280A215B778C0050F568 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		D692280B215B778C0050F568 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		D692280C215B778C0050F568 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		D692280D215B778C0050F568 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		D692280E215B778C0050F568 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		D692280F215B778C0050F568 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		D6922810215B778C0050F568 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		D6922811215B778C0050F568 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		D6922812215B778C0050F568 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		D6922813215B778C0050F568 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		D6922814215B778C0050F568 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		D6922815215B778C0050F568 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		D6922820215B77EF0050F568 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		D6922821215B77EF0050F568 /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
+		D6922823215E22330050F568 /* XGLeftSliderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGLeftSliderViewController.h; sourceTree = "<group>"; };
+		D6922824215E22330050F568 /* XGLeftSliderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGLeftSliderViewController.m; sourceTree = "<group>"; };
+		D6922829215E23C60050F568 /* UIView+UIView_extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+UIView_extra.h"; sourceTree = "<group>"; };
+		D692282A215E23C60050F568 /* UIView+UIView_extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIView_extra.m"; sourceTree = "<group>"; };
+		D692282C215E27EF0050F568 /* XGLeftChoiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGLeftChoiceViewController.h; sourceTree = "<group>"; };
+		D692282D215E27EF0050F568 /* XGLeftChoiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGLeftChoiceViewController.m; sourceTree = "<group>"; };
 		D8A605C464B944200E93EB19 /* Pods-ChatProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProjectTests/Pods-ChatProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAD04989C47492A1B99B173F /* Pods-ChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProject/Pods-ChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		F98F691EC6B8C2939202ED9D /* Pods-ChatProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatProjectUITests/Pods-ChatProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1313,6 +1357,8 @@
 			children = (
 				D646ECB52109ACD700DB1488 /* XGMainDynamicViewController.h */,
 				D646ECB62109ACD700DB1488 /* XGMainDynamicViewController.m */,
+				D69227FF215B76780050F568 /* XGPublicDynamicViewController.h */,
+				D6922800215B76780050F568 /* XGPublicDynamicViewController.m */,
 			);
 			path = Dynamic;
 			sourceTree = "<group>";
@@ -1345,6 +1391,10 @@
 				D63D7D652101D032004AE0FA /* Assets.xcassets */,
 				D63D7D6A2101D032004AE0FA /* Info.plist */,
 				D63D7D8F2101DB31004AE0FA /* Launch Screen.storyboard */,
+				D6922823215E22330050F568 /* XGLeftSliderViewController.h */,
+				D6922824215E22330050F568 /* XGLeftSliderViewController.m */,
+				D692282C215E27EF0050F568 /* XGLeftChoiceViewController.h */,
+				D692282D215E27EF0050F568 /* XGLeftChoiceViewController.m */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -1384,6 +1434,8 @@
 				D646EAEB210971B600DB1488 /* NSObject+HUD.m */,
 				D646EAF0210971B600DB1488 /* NSObject+Parse.h */,
 				D646EAE5210971B600DB1488 /* NSObject+Parse.m */,
+				D6922829215E23C60050F568 /* UIView+UIView_extra.h */,
+				D692282A215E23C60050F568 /* UIView+UIView_extra.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1404,6 +1456,7 @@
 		D646EB062109759F00DB1488 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D6922802215B778C0050F568 /* TZImagePickerController */,
 				D646ECC62109D7B500DB1488 /* SDK */,
 				D646EC9221099B5F00DB1488 /* AES */,
 				D646EC8D21099B3800DB1488 /* GTMBase64 */,
@@ -1740,6 +1793,34 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
+		D6922802215B778C0050F568 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				D6922821215B77EF0050F568 /* TZTestCell.h */,
+				D6922820215B77EF0050F568 /* TZTestCell.m */,
+				D6922803215B778C0050F568 /* TZPhotoPreviewCell.h */,
+				D6922804215B778C0050F568 /* TZPhotoPickerController.h */,
+				D6922805215B778C0050F568 /* TZImageManager.h */,
+				D6922806215B778C0050F568 /* TZAssetCell.m */,
+				D6922807215B778C0050F568 /* TZVideoPlayerController.m */,
+				D6922808215B778C0050F568 /* TZAssetModel.m */,
+				D6922809215B778C0050F568 /* TZImagePickerController.h */,
+				D692280A215B778C0050F568 /* UIView+Layout.m */,
+				D692280B215B778C0050F568 /* TZPhotoPreviewController.m */,
+				D692280C215B778C0050F568 /* TZImagePickerController.bundle */,
+				D692280D215B778C0050F568 /* TZAssetCell.h */,
+				D692280E215B778C0050F568 /* TZImageManager.m */,
+				D692280F215B778C0050F568 /* TZPhotoPickerController.m */,
+				D6922810215B778C0050F568 /* TZPhotoPreviewCell.m */,
+				D6922811215B778C0050F568 /* TZAssetModel.h */,
+				D6922812215B778C0050F568 /* TZVideoPlayerController.h */,
+				D6922813215B778C0050F568 /* TZPhotoPreviewController.h */,
+				D6922814215B778C0050F568 /* UIView+Layout.h */,
+				D6922815215B778C0050F568 /* TZImagePickerController.m */,
+			);
+			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1955,6 +2036,7 @@
 				D646EC6B21099AE400DB1488 /* Expression_103.png in Resources */,
 				D646EC2E21099AE400DB1488 /* Expression_52.png in Resources */,
 				D646EC2721099AE400DB1488 /* Expression_86.png in Resources */,
+				D692281B215B778D0050F568 /* TZImagePickerController.bundle in Resources */,
 				D646EC5521099AE400DB1488 /* Expression_76.png in Resources */,
 				D646EC7421099AE400DB1488 /* Expression_101.png in Resources */,
 				D646EC2821099AE400DB1488 /* Expression_92.png in Resources */,
@@ -2088,7 +2170,9 @@
 				D61DC59421465A220026EB08 /* RealTimeLocationViewController.m in Sources */,
 				D61DC593214658B30026EB08 /* RCDContactSelectedTableViewController.h in Sources */,
 				D61C16D0214644C300D5EA79 /* RCDNoFriendView.m in Sources */,
+				D692282B215E23C60050F568 /* UIView+UIView_extra.m in Sources */,
 				D646ECDD2109DB9A00DB1488 /* XGNavigationBaseViewController.m in Sources */,
+				D692281C215B778D0050F568 /* TZImageManager.m in Sources */,
 				D646EC9F21099B5F00DB1488 /* AESCrypt.m in Sources */,
 				D61C155D213D3AE800D5EA79 /* RCDSearchResultViewCell.m in Sources */,
 				D61C15D1213D3F4F00D5EA79 /* RCDContactTableViewCell.m in Sources */,
@@ -2097,6 +2181,7 @@
 				D646EC7F21099AE400DB1488 /* ChatEmojiIcons.m in Sources */,
 				D646EB042109759600DB1488 /* MyAFSessionManager.m in Sources */,
 				D646EC8721099AE500DB1488 /* ChatInputTextView.m in Sources */,
+				D6922818215B778D0050F568 /* TZAssetModel.m in Sources */,
 				D61DC5982148EA7C0026EB08 /* XGMyInfoHeadTableViewCell.m in Sources */,
 				D646ECBA2109AD1700DB1488 /* XGMainRegisterViewController.m in Sources */,
 				D61C158A213D3CBD00D5EA79 /* RCDRCIMDataSource.m in Sources */,
@@ -2116,6 +2201,7 @@
 				D61C15D9213D3F4F00D5EA79 /* RCDSearchResultTableViewCell.m in Sources */,
 				D61C14082133E89800D5EA79 /* XGChatAddFriendViewController.m in Sources */,
 				D61C15E0213D3F4F00D5EA79 /* RCDPrivateSettingsUserInfoCell.m in Sources */,
+				D692281E215B778D0050F568 /* TZPhotoPreviewCell.m in Sources */,
 				D61C15D6213D3F4F00D5EA79 /* RCDSelectPersonTableViewCell.m in Sources */,
 				D61C15DA213D3F4F00D5EA79 /* RCDAddressBookTableViewCell.m in Sources */,
 				D61C141B213CE21600D5EA79 /* XGChatAddFriendInfoTableViewCell.m in Sources */,
@@ -2124,7 +2210,9 @@
 				D646ECE5210AF70400DB1488 /* XGLoginPasswordViewController.m in Sources */,
 				D61C1569213D3B8B00D5EA79 /* RCDSquareCell.m in Sources */,
 				D646EC9D21099B5F00DB1488 /* NSData+AES256.m in Sources */,
+				D692282E215E27EF0050F568 /* XGLeftChoiceViewController.m in Sources */,
 				D61C15D5213D3F4F00D5EA79 /* RCDPrivateSettingsTableViewController.m in Sources */,
+				D6922801215B76780050F568 /* XGPublicDynamicViewController.m in Sources */,
 				D61C15AD213D3DE400D5EA79 /* RCDUpdateNameViewController.m in Sources */,
 				D61C15AC213D3DE400D5EA79 /* RCDConversationSettingClearMessageCell.m in Sources */,
 				D61C1568213D3B8B00D5EA79 /* RCDSquareTableViewController.m in Sources */,
@@ -2134,6 +2222,7 @@
 				D646EC8A21099AE500DB1488 /* EmojiScrollView.m in Sources */,
 				D61C1570213D3BFA00D5EA79 /* RCDBaseSettingTableViewCell.m in Sources */,
 				D646EAFA210971B600DB1488 /* NSObject+HUD.m in Sources */,
+				D692281A215B778D0050F568 /* TZPhotoPreviewController.m in Sources */,
 				D646EB5221097CF000DB1488 /* GXToast.m in Sources */,
 				D61C155C213D3AE800D5EA79 /* RCDSearchDataManager.m in Sources */,
 				D61C16B1214639D200D5EA79 /* RCDTestMessageCell.m in Sources */,
@@ -2164,13 +2253,16 @@
 				D646EAF4210971B600DB1488 /* UIView+Frame.m in Sources */,
 				D646EB032109759600DB1488 /* KeychainItemWrapper.m in Sources */,
 				D646ECEB210B235100DB1488 /* XGRegisterAddInfoViewController.m in Sources */,
+				D6922817215B778D0050F568 /* TZVideoPlayerController.m in Sources */,
 				D61C169F2146386E00D5EA79 /* KxMenu.m in Sources */,
 				D61C157D213D3C8000D5EA79 /* RealTimeLocationStartCell.m in Sources */,
 				D646ECC52109AF5300DB1488 /* XGMainTabbarViewController.m in Sources */,
+				D6922822215B77EF0050F568 /* TZTestCell.m in Sources */,
 				D61C1676214621A600D5EA79 /* RCDataBaseManager.m in Sources */,
 				D646ECB42109ACC600DB1488 /* XGMainMyInfoViewController.m in Sources */,
 				D61C167B2146240A00D5EA79 /* AFHttpTool.m in Sources */,
 				D61C15D3213D3F4F00D5EA79 /* RCDPersonDetailViewController.m in Sources */,
+				D6922825215E22330050F568 /* XGLeftSliderViewController.m in Sources */,
 				D646ECA021099B5F00DB1488 /* NSData+CommonCrypto.m in Sources */,
 				D646ECEE210B2CAE00DB1488 /* XGReplacePasswordViewController.m in Sources */,
 				D61C155B213D3AE800D5EA79 /* RCDSearchViewController.m in Sources */,
@@ -2182,6 +2274,7 @@
 				D646EAF7210971B600DB1488 /* UILabel+MyInit.m in Sources */,
 				D61C167021461F9F00D5EA79 /* UIColor+RCColor.m in Sources */,
 				D63D7D5E2101D02E004AE0FA /* AppDelegate.m in Sources */,
+				D692281D215B778D0050F568 /* TZPhotoPickerController.m in Sources */,
 				D61C167E2146248000D5EA79 /* RCDHttpTool.m in Sources */,
 				D646ECBD2109AD2400DB1488 /* XGMainLoginViewController.m in Sources */,
 				D646ECE8210B0A2500DB1488 /* XGLoginAddInfoViewController.m in Sources */,
@@ -2212,12 +2305,15 @@
 				D646EB5321097CF000DB1488 /* UIView+SDAutoLayout.m in Sources */,
 				D61C15A6213D3DE400D5EA79 /* RCDSettingBaseViewController.m in Sources */,
 				D61C1613213D43FC00D5EA79 /* RCAnnotation.m in Sources */,
+				D6922819215B778D0050F568 /* UIView+Layout.m in Sources */,
 				D646ECB72109ACD700DB1488 /* XGMainDynamicViewController.m in Sources */,
 				D646EC7C21099AE400DB1488 /* Emoji.m in Sources */,
 				D61C15DC213D3F4F00D5EA79 /* RCDContactSelectedTableViewCell.m in Sources */,
 				D61C155E213D3AE800D5EA79 /* RCDSearchBar.m in Sources */,
+				D692281F215B778D0050F568 /* TZImagePickerController.m in Sources */,
 				D646EC8321099AE400DB1488 /* CommentEmoji.m in Sources */,
 				D646EAF6210971B600DB1488 /* NSObject+Parse.m in Sources */,
+				D6922816215B778D0050F568 /* TZAssetCell.m in Sources */,
 				D646EAF1210971B600DB1488 /* UIImageView+Method.m in Sources */,
 				D61C16C321463A3F00D5EA79 /* FMDatabaseQueue.m in Sources */,
 				D61C1616213D43FC00D5EA79 /* RCAnnotationView.m in Sources */,
@@ -2396,7 +2492,8 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z89FT9DY34;
 				ENABLE_BITCODE = NO;
@@ -2424,8 +2521,10 @@
 					"$(PROJECT_DIR)/ChatProject/Configuration/Library/RCloud/Utilities/UMAnalytics",
 					"$(PROJECT_DIR)/ChatProject/Configuration/Library/SDK/Required",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mindimp.bonday.ChatProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mindimp.bonday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5a246f99-1608-454b-9289-a1212017f395";
+				PROVISIONING_PROFILE_SPECIFIER = development_5_23;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
@@ -2441,7 +2540,8 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z89FT9DY34;
 				ENABLE_BITCODE = NO;
@@ -2469,8 +2569,10 @@
 					"$(PROJECT_DIR)/ChatProject/Configuration/Library/RCloud/Utilities/UMAnalytics",
 					"$(PROJECT_DIR)/ChatProject/Configuration/Library/SDK/Required",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mindimp.bonday.ChatProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mindimp.bonday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5d04745e-9235-467d-95ff-6632e27af2a0";
+				PROVISIONING_PROFILE_SPECIFIER = ADHoc_5_23;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";

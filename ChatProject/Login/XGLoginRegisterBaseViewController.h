@@ -12,4 +12,5 @@
 @property (nonatomic, strong) UIView *loginBackView;
 @property (nonatomic, strong) UILabel *loginTitleLabel;
 @property (nonatomic, strong) UILabel *loginDesLabel;
+@property (nonatomic, copy) void(^dismissCurrentController)(void);
 @end

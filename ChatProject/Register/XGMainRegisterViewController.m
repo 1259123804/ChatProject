@@ -429,30 +429,30 @@
             [self checkCanLoginState:^(BOOL canLoginState) {
                 
                 if (canLoginState){
-                    XGRegisterAddInfoViewController *addInfoController = [[XGRegisterAddInfoViewController alloc] init];
-                    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-                    [dic setValue:self.loginPhoneTextField.text forKey:@"phone"];
-                    [dic setValue:self.loginPasswordTextField.text forKey:@"password"];
-                    addInfoController.infoDic = dic;
-                    [self presentViewController:addInfoController animated:YES completion:nil];
-//                    [SMSSDK commitVerificationCode:self.loginIdentifyTextField.text phoneNumber:self.loginPhoneTextField.text zone:@"86" result:^(NSError *error) {
-//                        
-//                        NSLog(@"%@", error.userInfo[@"description"]);
-//                        if (error){
-//                            
-//                            MyAlertView(@"验证失败", nil);
-//                            
-//                        }else{
-//                            
-//                            MyAlertView(@"验证成功", nil);
-//                            XGRegisterAddInfoViewController *addInfoController = [[XGRegisterAddInfoViewController alloc] init];
-//                            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//                            [dic setValue:self.loginPhoneTextField.text forKey:@"phone"];
-//                            [dic setValue:self.loginPasswordTextField.text forKey:@"password"];
-//                            addInfoController.infoDic = dic;
-//                            [self presentViewController:addInfoController animated:YES completion:nil];
-//                        }
-//                    }];
+//                    XGRegisterAddInfoViewController *addInfoController = [[XGRegisterAddInfoViewController alloc] init];
+//                    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//                    [dic setValue:self.loginPhoneTextField.text forKey:@"phone"];
+//                    [dic setValue:self.loginPasswordTextField.text forKey:@"password"];
+//                    addInfoController.infoDic = dic;
+//                    [self presentViewController:addInfoController animated:YES completion:nil];
+                    [SMSSDK commitVerificationCode:self.loginIdentifyTextField.text phoneNumber:self.loginPhoneTextField.text zone:@"86" result:^(NSError *error) {
+                        
+                        NSLog(@"%@", error.userInfo[@"description"]);
+                        if (error){
+                            
+                            MyAlertView(@"验证失败", nil);
+                            
+                        }else{
+                            
+                            MyAlertView(@"验证成功", nil);
+                            XGRegisterAddInfoViewController *addInfoController = [[XGRegisterAddInfoViewController alloc] init];
+                            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+                            [dic setValue:self.loginPhoneTextField.text forKey:@"phone"];
+                            [dic setValue:self.loginPasswordTextField.text forKey:@"password"];
+                            addInfoController.infoDic = dic;
+                            [self presentViewController:addInfoController animated:YES completion:nil];
+                        }
+                    }];
                 }
             }];
         }];

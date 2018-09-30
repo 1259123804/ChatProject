@@ -16,9 +16,10 @@
 #import "RCDSettingUserDefaults.h"
 #import "RCIM.h"
 #import "RCDTestMessage.h"
+#import "XGLeftChoiceViewController.h"
 #define RONGCLOUD_IM_APPKEY @"pkfcgjstpoad8"
 @interface AppDelegate ()<RCIMConnectionStatusDelegate, RCIMReceiveMessageDelegate>
-@property (nonatomic, strong) XGLoginPasswordViewController *loginViewController;
+//@property (nonatomic, strong) XGLoginPasswordViewController *loginViewController;
 @end
 
 @implementation AppDelegate
@@ -30,18 +31,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     MyTools *tool = [MyTools defaultTools];
     [tool getLocation];
-    XGMainTabbarViewController *tabbarController = [[XGMainTabbarViewController alloc] init];
-    self.window.rootViewController = tabbarController;
-    [self.window makeKeyAndVisible];
-    if (!DefaultsValueForKey(kUser_token)){
-        [self.window.rootViewController presentViewController:self.loginViewController animated:YES completion:^{
-            
-            MyAlertView(@"请登录", nil);
-        }];
-    }else{
-        
-        [self configureRcimSetting];
-    }
     /**
      *  推送说明：
      *
@@ -158,6 +147,21 @@
         NSLog(@"该启动事件不包含来自融云的推送服务");
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configureRcimSetting) name:kNotificationName_loginSuccess object:nil];
+    if (!DefaultsValueForKey(kUser_token)){
+        XGLoginPasswordViewController *loginViewController = [[XGLoginPasswordViewController alloc] init];
+        self.window.rootViewController = loginViewController;
+//        [self.window.rootViewController presentViewController:loginViewController animated:YES completion:^{
+//
+//            MyAlertView(@"请登录", nil);
+//        }];
+    }else{
+        XGLeftChoiceViewController *leftChoiceController = [[XGLeftChoiceViewController alloc] init];
+        XGMainTabbarViewController *tabbarController = [[XGMainTabbarViewController alloc] init];
+        self.leftSliderController = [[XGLeftSliderViewController alloc] initWithLeftView:leftChoiceController andMainView:tabbarController];
+        self.window.rootViewController = self.leftSliderController;
+        [self configureRcimSetting];
+    }
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -166,14 +170,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (XGLoginPasswordViewController *)loginViewController{
-    
-    if (_loginViewController == nil){
-        
-        _loginViewController = [[XGLoginPasswordViewController alloc] init];
-    }
-    return _loginViewController;
-}
+//- (XGLoginPasswordViewController *)loginViewController{
+//
+//    if (_loginViewController == nil){
+//
+//        _loginViewController = [[XGLoginPasswordViewController alloc] init];
+//    }
+//    return _loginViewController;
+//}
 
 - (void)configureRcimSetting{
     
@@ -223,7 +227,6 @@
 /**
  * 推送处理2
  */
-//注册用户通知设置
 - (void)application:(UIApplication *)application
 didRegisterUserNotificationSettings:
 (UIUserNotificationSettings *)notificationSettings {

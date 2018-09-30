@@ -358,11 +358,15 @@
         if ([responseObject[@"status"] intValue] == 0){
             
             NSDictionary *result = responseObject[@"result"];
-            [MyTools savePersonInfoWithDic:result];
+            [MyTools savePersonInfoWithDic:result isRegister:NO headImage:nil];
+        }else if (responseObject[@"message"]){
+            
+            MyAlertView(responseObject[@"message"], nil);
         }
         
     } failure:^(NSError * _Nonnull error) {
         
+        MyAlertView(@"网络错误", nil);
     }];
 }
 

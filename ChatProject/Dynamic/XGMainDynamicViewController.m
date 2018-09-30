@@ -7,7 +7,7 @@
 //
 
 #import "XGMainDynamicViewController.h"
-
+#import "XGPublicDynamicViewController.h"
 @interface XGMainDynamicViewController ()
 
 @end
@@ -16,7 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIButton *dynamicBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    dynamicBtn.backgroundColor = [UIColor blueColor];
+    [dynamicBtn setTitle:@"发布动态" forState:UIControlStateNormal];
+    dynamicBtn.frame = CGRectMake(kScreenWidth/2-50, kScreenHeight/2 - 20, 100, 40);
+    [dynamicBtn addTarget:self action:@selector(dynamicClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:dynamicBtn];
     // Do any additional setup after loading the view.
+}
+
+- (void)dynamicClick{
+    
+    XGPublicDynamicViewController *publicDynamicController = [[XGPublicDynamicViewController alloc] init];
+    [MyTools pushViewControllerFrom:self To:publicDynamicController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

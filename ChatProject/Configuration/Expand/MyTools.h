@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString *latitude; //经度
 @property (nonatomic, copy) NSString *longitude; //纬度
 @property (nonatomic, copy) void(^getLocationComplete)(void);
-@property (nonatomic, retain) UIViewController *topViewController;
+@property (nonatomic, retain) UIViewController *topViewController; 
 + (MyTools *)defaultTools;
 - (void)getLocation;
 
@@ -79,7 +79,7 @@
 //wkwebView内部跳转验证
 + (void)wkwebView:(WKWebView *)webView jumpBrowser:(BOOL)jumpBrowser checkAction:(WKNavigationAction *)navigationAction handler:(void(^)(WKNavigationActionPolicy))handler;
 + (NSString *)suitImageViewAndFontSizeWithString:(NSString *)content;
-
-+ (void)savePersonInfoWithDic:(NSDictionary *)infoDic;
++ (void)uploadImageWithImage:(NSArray *)uploadImages uploadType:(NSString *)type completion:(void(^)(NSDictionary *, NSArray *))completion;
++ (void)savePersonInfoWithDic:(NSDictionary *)infoDic isRegister:(BOOL)isRegister headImage:(UIImage *)headImage;
 + (void)clearUserInfo;
 @end

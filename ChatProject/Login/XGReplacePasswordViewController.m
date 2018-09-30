@@ -188,6 +188,7 @@
                         
                         if ([responseObject[@"status"] intValue] == 0) {
                             
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_dismissLogin object:nil];
                             MyAlertView(responseObject[@"result"][@"msg"], nil);
                             
                         }else{

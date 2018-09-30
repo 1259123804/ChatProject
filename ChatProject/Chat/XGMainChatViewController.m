@@ -27,7 +27,7 @@
 #import "RCDUtilities.h"
 #import "RCDChatViewController.h"
 #import "RCDForwardAlertView.h"
-@interface XGMainChatViewController ()<UISearchBarDelegate>
+@interface XGMainChatViewController ()<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *addSuspendView;
 @property (nonatomic, strong) UIView *addSuspendBackView;
@@ -74,7 +74,7 @@
         CGRect searchBarFrame = self.searchFriendsBar.frame;
         CGFloat originY = CGRectGetMaxY(searchBarFrame);
         _friendsTabelView = [[RCDTableView alloc]
-                             initWithFrame:CGRectMake(0, originY, self.view.bounds.size.width, self.view.bounds.size.height - originY)
+                             initWithFrame:CGRectMake(0, originY, self.view.bounds.size.width, self.view.bounds.size.height )
                              style:UITableViewStyleGrouped];
         
         _friendsTabelView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -542,14 +542,17 @@
        
         _headerImageView = [[UIImageView alloc] initWithImage:nil];
         _headerImageView.frame = CGRectMake(10, CGRectGetMidY(self.navTitleLabel.frame) - 20 , 40, 40);
+        _headerImageView.layer.cornerRadius = 20.0;
+        _headerImageView.layer.masksToBounds = YES;
+    //_headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
         
         if (DefaultsValueForKey(kUser_avatar) && ![DefaultsValueForKey(kUser_avatar) isEqualToString:@""]) {
             
             [_headerImageView sd_setImageWithURL:[NSURL URLWithString:DefaultsValueForKey(kUser_avatar)]];
         }else{
             
-            DefaultPortraitView *portrait = [[DefaultPortraitView alloc] initWithFrame:_headerImageView.bounds];
-            [portrait setColorAndLabel:DefaultsValueForKey(kUser_id) Nickname:kUser_name];
+            DefaultPortraitView *portrait = [[DefaultPortraitView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+            [portrait setColorAndLabel:DefaultsValueForKey(kUser_id) Nickname:DefaultsValueForKey(kUser_name)];
             _headerImageView.image = [portrait imageFromView];
         }
     }

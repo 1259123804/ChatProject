@@ -33,6 +33,9 @@
     [self.contentView addSubview:self.idLabel];
     [self.contentView addSubview:self.mainView];
     
+    self.headImageView.layer.cornerRadius = 30.0;
+    self.headImageView.layer.masksToBounds = YES;
+    
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = UIColorWithRGBA(233, 233, 233, 1);
     [self.contentView addSubview:lineView];
@@ -64,15 +67,15 @@
     
     self.nameLabel.sd_layout
     .leftSpaceToView(self.headImageView, 10)
-    .topSpaceToView(self.contentView, 15)
+    .topSpaceToView(topLineView, 20)
     .rightSpaceToView(self.mainView, 5)
-    .heightIs(20);
+    .autoHeightRatio(0);
     
     self.idLabel.sd_layout
     .leftSpaceToView(self.headImageView, 10)
-    .topSpaceToView(self.nameLabel, 0)
+    .topSpaceToView(self.nameLabel, 5)
     .rightSpaceToView(self.mainView, 5)
-    .heightIs(20);
+    .autoHeightRatio(0);
     
     lineView.sd_layout
     .leftEqualToView(self.contentView)

@@ -502,6 +502,7 @@
         _loginBtn.layer.masksToBounds = YES;
         [[_loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             
+            [self.view endEditing:YES];
             [self checkCanLoginState:^(BOOL canLoginState) {
                 
                 if (canLoginState){
@@ -511,15 +512,16 @@
                         self.infoDic = [NSMutableDictionary dictionary];
                     }
                     [self.infoDic setValue:self.loginNickNameTextField.text forKey:@"name"];
-                    [self.infoDic setValue:@(1) forKey:@"sex"];
-                    [self.infoDic setValue:@"1994-11-23" forKey:@"birthday"];
+                    [self.infoDic setValue:[self.loginSexTextField.text isEqualToString:@"女"] ? @(0) : @(1) forKey:@"sex"];
+                    [self.infoDic setValue:self.loginBirthdayTextField.text forKey:@"birthday"];
                     [self.infoDic setValue:self.loginEmailTextField.text forKey:@"email"];
+                    
                     [MyAFSessionManager requestWithURLString:[kTestApi stringByAppendingString:kRegister_user] parameters:self.infoDic requestType:MyRequestTypePost managerType:MyAFSessionManagerTypeJsonWithToken success:^(id  _Nullable responseObject) {
                         
                         if ([responseObject[@"status"] intValue] == 0){
                             
                             NSDictionary *result = responseObject[@"result"];
-                            [MyTools savePersonInfoWithDic:result];
+                            [MyTools savePersonInfoWithDic:result isRegister:YES headImage:self.loginHeadView.image];
                            
                         }else if (responseObject[@"message"]){
                             

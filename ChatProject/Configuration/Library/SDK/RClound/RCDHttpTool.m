@@ -441,8 +441,8 @@
                         }
                         //userInfo.status = [NSString stringWithFormat:@"%@", [dic objectForKey:@"status"]];
                         //userInfo.updatedAt = [NSString stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
-                        //userInfo.isFriend = YES;
-                        //userInfo.status = [NSString stringWithFormat:@"%d", userInfo.isFriend];
+                        userInfo.isFriend = YES;
+                        userInfo.status = [NSString stringWithFormat:@"%d", userInfo.isFriend];
                         [list addObject:userInfo];
                         [self.allFriends addObject:userInfo];
 
@@ -495,14 +495,20 @@
                 if ([result respondsToSelector:@selector(intValue)])
                     return;
                 if ([result respondsToSelector:@selector(objectForKey:)]) {
-                    RCDUserInfo *userInfo = [RCDUserInfo new];
-                    userInfo.userId = [result objectForKey:@"id"];
-                    userInfo.name = [result objectForKey:@"nickname"];
-                    userInfo.portraitUri = [result objectForKey:@"portraitUri"];
-                    if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
-                        userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
+                    NSArray *searchList = result[@"searchlist"];
+                    for (NSDictionary *searchDic in searchList) {
+                        
+                        RCDUserInfo *userInfo = [RCDUserInfo new];
+                        userInfo.userId = [NSString stringWithFormat:@"%d", [[searchDic objectForKey:@"id"] intValue]];
+                        userInfo.name = [searchDic objectForKey:@"name"];
+                        userInfo.portraitUri = [searchDic objectForKey:@"avatar"];
+                        userInfo.isFriend = [searchDic[@"is_friend"] boolValue];
+                        userInfo.status = [NSString stringWithFormat:@"%d", userInfo.isFriend];
+                        if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
+                            userInfo.portraitUri = [RCDUtilities defaultUserPortrait:userInfo];
+                        }
+                        [list addObject:userInfo];
                     }
-                    [list addObject:userInfo];
                     dispatch_async(dispatch_get_main_queue(), ^(void) {
                         userList(list);
                     });

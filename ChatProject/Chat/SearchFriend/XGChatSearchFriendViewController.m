@@ -116,8 +116,15 @@ UISearchDisplayDelegate, UISearchControllerDelegate>
         cell = [[XGSearchFriendResultTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(XGSearchFriendResultTableViewCell.class)];
         RCDUserInfo *user = _searchResult[indexPath.row];
         if (user) {
-            cell.addBtn.tag = indexPath.row;
-            [cell.addBtn addTarget:self action:@selector(addFriendClick:) forControlEvents:UIControlEventTouchUpInside];
+            if (user.isFriend) {
+                
+                cell.addBtn.hidden = YES;
+                
+            }else{
+                cell.addBtn.hidden = NO;
+                cell.addBtn.tag = indexPath.row;
+                [cell.addBtn addTarget:self action:@selector(addFriendClick:) forControlEvents:UIControlEventTouchUpInside];
+            }
             cell.lblName.text = user.name;
             if ([user.portraitUri isEqualToString:@""] || user.portraitUri == nil) {
                 DefaultPortraitView *defaultPortrait =

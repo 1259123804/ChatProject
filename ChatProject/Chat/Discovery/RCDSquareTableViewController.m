@@ -18,14 +18,11 @@
 #import "UIColor+RCColor.h"
 
 @interface RCDSquareTableViewController ()
-
+@property (nonatomic, strong) NSMutableArray *chatRoomIdList;
+@property (nonatomic, strong) NSMutableArray *chatRoomNames;
 @end
 
-@implementation RCDSquareTableViewController {
-    NSMutableArray *chatRoomIdList;
-    NSMutableArray *chatRoomNames;
-}
-
+@implementation RCDSquareTableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -34,19 +31,19 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    chatRoomNames = [NSMutableArray new];
-    chatRoomIdList = [NSMutableArray new];
+    self.chatRoomNames = [NSMutableArray new];
+    self.chatRoomIdList = [NSMutableArray new];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *squareInfoList = [userDefaults mutableArrayValueForKey:@"SquareInfoList"];
     for (NSDictionary *info in squareInfoList) {
         NSString *type = info[@"type"];
         if ([type isEqualToString:@"chatroom"]) {
-            [chatRoomIdList addObject:info[@"id"]];
-            [chatRoomNames addObject:info[@"name"]];
+            [self.chatRoomIdList addObject:info[@"id"]];
+            [self.chatRoomNames addObject:info[@"name"]];
         }
     }
-    if (chatRoomIdList.count > 0) {
+    if (self.chatRoomIdList.count > 0) {
         [self.tableView reloadData];
     }
     [RCDHTTPTOOL getSquareInfoCompletion:^(NSMutableArray *result) {
@@ -59,13 +56,13 @@
                 [tempChatRoomNames addObject:info[@"name"]];
             }
             if (tempChatRoomIdList.count > 0 && tempChatRoomNames.count > 0) {
-                chatRoomIdList = tempChatRoomIdList;
-                chatRoomNames = tempChatRoomNames;
+                self.chatRoomIdList = tempChatRoomIdList;
+                self.chatRoomNames = tempChatRoomNames;
                 [self.tableView reloadData];
             }
         }
         //保存默认聊天室id
-        [DEFAULTS setObject:chatRoomIdList forKey:@"defaultChatRoomIdList"];
+        [DEFAULTS setObject:self.chatRoomIdList forKey:@"defaultChatRoomIdList"];
         [DEFAULTS synchronize];
     }];
 }
@@ -84,7 +81,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (chatRoomNames.count == 0) {
+    if (self.chatRoomNames.count == 0) {
         return 0;
     } else {
         return 1;
@@ -93,12 +90,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger rows;
-    if (chatRoomNames.count == 0) {
+    if (self.chatRoomNames.count == 0) {
         rows = 0;
     } else {
         switch (section) {
         case 0:
-            rows = chatRoomNames.count;
+            rows = self.chatRoomNames.count;
             break;
 
         default:
@@ -110,7 +107,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (chatRoomNames.count == 0 || chatRoomNames == nil) {
+    if (self.chatRoomNames.count == 0 || self.chatRoomNames == nil) {
         return nil;
     }
     NSArray *chatroomIcons = [[NSArray alloc] initWithObjects:@"icon_1-1", @"icon_2-1", @"icon_3-1", @"icon_4-1", nil];
@@ -120,7 +117,7 @@
 
     if (cell == nil) {
         cell = [[RCDSquareCell alloc] initWithIconName:[NSString stringWithFormat:@"%@", chatroomIcons[indexPath.row]]
-                                             TitleName:chatRoomNames[indexPath.row]];
+                                             TitleName:self.chatRoomNames[indexPath.row]];
     }
     return cell;
 }
@@ -168,10 +165,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *chatroomId;
-    chatroomId = chatRoomIdList[indexPath.row];
+    chatroomId = self.chatRoomIdList[indexPath.row];
     RCDChatViewController *chatVC =
         [[RCDChatViewController alloc] initWithConversationType:ConversationType_CHATROOM targetId:chatroomId];
-    chatVC.title = chatRoomNames[indexPath.row];
+    chatVC.title = self.chatRoomNames[indexPath.row];
     [self.navigationController pushViewController:chatVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -180,12 +177,12 @@
 
 - (void)gotoChatRoomConversation:(UITapGestureRecognizer *)recognizer {
     NSArray *chatRoomNameArr = [[NSArray alloc] initWithObjects:@"聊天室1", @"聊天室2", @"聊天室3", @"聊天室4", nil];
-    if (chatRoomIdList.count == 0) {
+    if (self.chatRoomIdList.count == 0) {
         return;
     }
     NSString *chatroomId;
     NSInteger tag = recognizer.view.tag;
-    chatroomId = chatRoomIdList[tag - 10];
+    chatroomId = self.chatRoomIdList[tag - 10];
     RCDChatViewController *chatVC =
         [[RCDChatViewController alloc] initWithConversationType:ConversationType_CHATROOM targetId:chatroomId];
     chatVC.title = chatRoomNameArr[tag - 10];
